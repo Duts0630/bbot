@@ -11,7 +11,7 @@
 <link href="../advanced/" rel="prev"/>
 <link href="../../modules/list_of_modules/" rel="next"/>
 <link href="../../favicon.png" rel="icon"/>
-<meta content="mkdocs-1.6.1, mkdocs-material-9.5.41" name="generator"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.5.42" name="generator"/>
 <title>Configuration - BBOT Docs</title>
 <link href="../../assets/stylesheets/main.0253249f.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.wzv914yo.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.at532_1b.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -856,16 +856,22 @@ Is the same as:
 <td>[]</td>
 </tr>
 <tr>
-<td>modules.baddns.enable_references</td>
-<td>bool</td>
-<td>Enable the references module (off by default)</td>
-<td>False</td>
+<td>modules.baddns.enabled_submodules</td>
+<td>list</td>
+<td>A list of submodules to enable. Empty list (default) enables CNAME, TXT and MX Only</td>
+<td>[]</td>
 </tr>
 <tr>
 <td>modules.baddns.only_high_confidence</td>
 <td>bool</td>
 <td>Do not emit low-confidence or generic detections</td>
 <td>False</td>
+</tr>
+<tr>
+<td>modules.baddns_direct.custom_nameservers</td>
+<td>list</td>
+<td>Force BadDNS to use a list of custom nameservers</td>
+<td>[]</td>
 </tr>
 <tr>
 <td>modules.baddns_zone.custom_nameservers</td>
@@ -1027,7 +1033,7 @@ Is the same as:
 <td>modules.filedownload.extensions</td>
 <td>list</td>
 <td>File extensions to download</td>
-<td>['bak', 'bash', 'bashrc', 'conf', 'cfg', 'crt', 'csv', 'db', 'sqlite', 'doc', 'docx', 'exe', 'ica', 'indd', 'ini', 'jar', 'key', 'pub', 'log', 'markdown', 'md', 'msi', 'odg', 'odp', 'ods', 'odt', 'pdf', 'pem', 'pps', 'ppsx', 'ppt', 'pptx', 'ps1', 'raw', 'rdp', 'sh', 'sql', 'swp', 'sxw', 'tar', 'tar.gz', 'zip', 'txt', 'vbs', 'wpd', 'xls', 'xlsx', 'xml', 'yml', 'yaml']</td>
+<td>['bak', 'bash', 'bashrc', 'cfg', 'conf', 'crt', 'csv', 'db', 'dll', 'doc', 'docx', 'exe', 'ica', 'indd', 'ini', 'jar', 'key', 'log', 'markdown', 'md', 'msi', 'odg', 'odp', 'ods', 'odt', 'pdf', 'pem', 'pps', 'ppsx', 'ppt', 'pptx', 'ps1', 'pub', 'raw', 'rdp', 'sh', 'sql', 'sqlite', 'swp', 'sxw', 'tar.gz', 'tar', 'txt', 'vbs', 'war', 'wpd', 'xls', 'xlsx', 'xml', 'yaml', 'yml', 'zip']</td>
 </tr>
 <tr>
 <td>modules.filedownload.max_filesize</td>
@@ -1231,7 +1237,7 @@ Is the same as:
 <td>modules.nuclei.version</td>
 <td>str</td>
 <td>nuclei version</td>
-<td>3.3.2</td>
+<td>3.3.5</td>
 </tr>
 <tr>
 <td>modules.oauth.try_all</td>
@@ -1492,6 +1498,12 @@ Is the same as:
 <td>1000</td>
 </tr>
 <tr>
+<td>modules.apkpure.output_folder</td>
+<td>str</td>
+<td>Folder to download apk's to</td>
+<td></td>
+</tr>
+<tr>
 <td>modules.bevigil.api_key</td>
 <td>str</td>
 <td>BeVigil OSINT API Key</td>
@@ -1520,6 +1532,18 @@ Is the same as:
 <td>int</td>
 <td>Limit the number of files downloaded per bucket</td>
 <td>50</td>
+</tr>
+<tr>
+<td>modules.bufferoverrun.api_key</td>
+<td>str</td>
+<td>BufferOverrun API key</td>
+<td></td>
+</tr>
+<tr>
+<td>modules.bufferoverrun.commercial</td>
+<td>bool</td>
+<td>Use commercial API</td>
+<td>False</td>
 </tr>
 <tr>
 <td>modules.builtwith.api_key</td>
@@ -1774,6 +1798,24 @@ Is the same as:
 <td></td>
 </tr>
 <tr>
+<td>modules.subdomainradar.api_key</td>
+<td>str</td>
+<td>SubDomainRadar.io API key</td>
+<td></td>
+</tr>
+<tr>
+<td>modules.subdomainradar.group</td>
+<td>str</td>
+<td>The enumeration group to use. Choose from fast, medium, deep</td>
+<td>fast</td>
+</tr>
+<tr>
+<td>modules.subdomainradar.timeout</td>
+<td>int</td>
+<td>Timeout in seconds</td>
+<td>120</td>
+</tr>
+<tr>
 <td>modules.trickest.api_key</td>
 <td>str</td>
 <td>Trickest API key</td>
@@ -1807,19 +1849,13 @@ Is the same as:
 <td>modules.trufflehog.version</td>
 <td>str</td>
 <td>trufflehog version</td>
-<td>3.82.2</td>
+<td>3.83.1</td>
 </tr>
 <tr>
 <td>modules.unstructured.extensions</td>
 <td>list</td>
 <td>File extensions to parse</td>
 <td>['bak', 'bash', 'bashrc', 'conf', 'cfg', 'crt', 'csv', 'db', 'sqlite', 'doc', 'docx', 'ica', 'indd', 'ini', 'key', 'pub', 'log', 'markdown', 'md', 'odg', 'odp', 'ods', 'odt', 'pdf', 'pem', 'pps', 'ppsx', 'ppt', 'pptx', 'ps1', 'rdp', 'sh', 'sql', 'swp', 'sxw', 'txt', 'vbs', 'wpd', 'xls', 'xlsx', 'xml', 'yml', 'yaml']</td>
-</tr>
-<tr>
-<td>modules.unstructured.ignore_folders</td>
-<td>list</td>
-<td>Subfolders to ignore when crawling downloaded folders</td>
-<td>['.git']</td>
 </tr>
 <tr>
 <td>modules.urlscan.urls</td>
@@ -2150,6 +2186,12 @@ Is the same as:
 <td>int</td>
 <td>Sets the maximum amount of text that can extracted from a YARA regex</td>
 <td>2000</td>
+</tr>
+<tr>
+<td>modules.speculate.ignore_folders</td>
+<td>list</td>
+<td>Subfolders to ignore when crawling downloaded folders</td>
+<td>['.git']</td>
 </tr>
 <tr>
 <td>modules.speculate.max_hosts</td>
