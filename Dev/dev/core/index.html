@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style._lz67l6d.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.r4n2fqtm.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -649,8 +649,7 @@
 </ul>
 <details class="quote">
 <summary>Source code in <code>bbot/core/core.py</code></summary>
-<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;"> 14</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;"> 15</span>
+<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;"> 15</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;"> 16</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;"> 17</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;"> 18</span>
@@ -846,7 +845,24 @@
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">208</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">209</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">210</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">211</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">class</span> <span style="color: #f0883e; font-weight: bold">BBOTCore</span><span style="color: #e6edf3">:</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">211</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">212</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">213</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">214</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">215</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">216</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">217</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">218</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">219</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">220</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">221</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">222</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">223</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">224</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">225</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">226</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">227</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">228</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">class</span> <span style="color: #f0883e; font-weight: bold">BBOTCore</span><span style="color: #e6edf3">:</span>
 <span style="color: #6e7681">    </span><span style="color: #a5d6ff">"""</span>
 <span style="color: #a5d6ff">    This is the first thing that loads when you import BBOT.</span>
 
@@ -876,9 +892,23 @@
         <span style="color: #e6edf3">self</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">logger</span>
         <span style="color: #e6edf3">self</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">log</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">logging</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">getLogger(</span><span style="color: #a5d6ff">"bbot.core"</span><span style="color: #e6edf3">)</span>
 
-        <span style="color: #ff7b72">import</span> <span style="color: #ff7b72">multiprocessing</span>
+        <span style="color: #e6edf3">self</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">_prep_multiprocessing()</span>
 
-        <span style="color: #e6edf3">self</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">process_name</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">multiprocessing</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">current_process()</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">name</span>
+    <span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">_prep_multiprocessing</span><span style="color: #e6edf3">(self):</span>
+        <span style="color: #ff7b72">import</span> <span style="color: #ff7b72">multiprocessing</span>
+        <span style="color: #ff7b72">from</span> <span style="color: #ff7b72">.helpers.process</span> <span style="color: #ff7b72">import</span> <span style="color: #e6edf3">BBOTProcess</span>
+
+        <span style="color: #ff7b72">if</span> <span style="color: #e6edf3">SHARED_INTERPRETER_STATE</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">is_main_process:</span>
+            <span style="color: #8b949e; font-style: italic"># if this is the main bbot process, set the logger and queue for the first time</span>
+            <span style="color: #ff7b72">from</span> <span style="color: #ff7b72">functools</span> <span style="color: #ff7b72">import</span> <span style="color: #e6edf3">partialmethod</span>
+
+            <span style="color: #e6edf3">BBOTProcess</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #d2a8ff; font-weight: bold">__init__</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">partialmethod(</span>
+                <span style="color: #e6edf3">BBOTProcess</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #d2a8ff; font-weight: bold">__init__</span><span style="color: #e6edf3">,</span> <span style="color: #e6edf3">log_level</span><span style="color: #ff7b72; font-weight: bold">=</span><span style="color: #e6edf3">self</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">logger</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">log_level,</span> <span style="color: #e6edf3">log_queue</span><span style="color: #ff7b72; font-weight: bold">=</span><span style="color: #e6edf3">self</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">logger</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">queue</span>
+            <span style="color: #e6edf3">)</span>
+
+        <span style="color: #8b949e; font-style: italic"># this makes our process class the default for process pools, etc.</span>
+        <span style="color: #e6edf3">mp_context</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">multiprocessing</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">get_context(</span><span style="color: #a5d6ff">"spawn"</span><span style="color: #e6edf3">)</span>
+        <span style="color: #e6edf3">mp_context</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">Process</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">BBOTProcess</span>
 
     <span style="color: #d2a8ff; font-weight: bold">@property</span>
     <span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">home</span><span style="color: #e6edf3">(self):</span>
@@ -1022,12 +1052,14 @@
         <span style="color: #ff7b72">if</span> <span style="color: #e6edf3">os</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">environ</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">get(</span><span style="color: #a5d6ff">"BBOT_TESTING"</span><span style="color: #e6edf3">,</span> <span style="color: #a5d6ff">""</span><span style="color: #e6edf3">)</span> <span style="color: #ff7b72; font-weight: bold">==</span> <span style="color: #a5d6ff">"True"</span><span style="color: #e6edf3">:</span>
             <span style="color: #e6edf3">process</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">self</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">create_thread(</span><span style="color: #ff7b72; font-weight: bold">*</span><span style="color: #e6edf3">args,</span> <span style="color: #ff7b72; font-weight: bold">**</span><span style="color: #e6edf3">kwargs)</span>
         <span style="color: #ff7b72">else</span><span style="color: #e6edf3">:</span>
-            <span style="color: #ff7b72">if</span> <span style="color: #e6edf3">self</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">process_name</span> <span style="color: #ff7b72; font-weight: bold">==</span> <span style="color: #a5d6ff">"MainProcess"</span><span style="color: #e6edf3">:</span>
+            <span style="color: #ff7b72">if</span> <span style="color: #e6edf3">SHARED_INTERPRETER_STATE</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">is_scan_process:</span>
                 <span style="color: #ff7b72">from</span> <span style="color: #ff7b72">.helpers.process</span> <span style="color: #ff7b72">import</span> <span style="color: #e6edf3">BBOTProcess</span>
 
                 <span style="color: #e6edf3">process</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">BBOTProcess(</span><span style="color: #ff7b72; font-weight: bold">*</span><span style="color: #e6edf3">args,</span> <span style="color: #ff7b72; font-weight: bold">**</span><span style="color: #e6edf3">kwargs)</span>
             <span style="color: #ff7b72">else</span><span style="color: #e6edf3">:</span>
-                <span style="color: #ff7b72">raise</span> <span style="color: #e6edf3">BBOTError(</span><span style="color: #79c0ff">f</span><span style="color: #a5d6ff">"Tried to start server from process {</span><span style="color: #e6edf3">self</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">process_name</span><span style="color: #a5d6ff">}"</span><span style="color: #e6edf3">)</span>
+                <span style="color: #ff7b72">import</span> <span style="color: #ff7b72">multiprocessing</span>
+
+                <span style="color: #ff7b72">raise</span> <span style="color: #e6edf3">BBOTError(</span><span style="color: #79c0ff">f</span><span style="color: #a5d6ff">"Tried to start server from process {</span><span style="color: #e6edf3">multiprocessing</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">current_process()</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">name</span><span style="color: #a5d6ff">}"</span><span style="color: #e6edf3">)</span>
         <span style="color: #e6edf3">process</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">daemon</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #79c0ff">True</span>
         <span style="color: #ff7b72">return</span> <span style="color: #e6edf3">process</span>
 
@@ -1112,13 +1144,13 @@
 <p>Return a semi-shallow copy of self. (<code>custom_config</code> is copied, but <code>default_config</code> stays the same)</p>
 <details class="quote">
 <summary>Source code in <code>bbot/core/core.py</code></summary>
-<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">166</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">167</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">168</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">169</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">170</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">171</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">172</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">copy</span><span style="color: #e6edf3">(self):</span>
+<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">181</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">182</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">183</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">184</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">185</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">186</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">187</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">copy</span><span style="color: #e6edf3">(self):</span>
 <span style="color: #6e7681">    </span><span style="color: #a5d6ff">"""</span>
 <span style="color: #a5d6ff">    Return a semi-shallow copy of self. (`custom_config` is copied, but `default_config` stays the same)</span>
 <span style="color: #a5d6ff">    """</span>
@@ -1139,11 +1171,11 @@
 <p>Merge a config into the custom config.</p>
 <details class="quote">
 <summary>Source code in <code>bbot/core/core.py</code></summary>
-<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">154</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">155</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">156</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">157</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">158</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">merge_custom</span><span style="color: #e6edf3">(self,</span> <span style="color: #e6edf3">config):</span>
+<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">169</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">170</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">171</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">172</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">173</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">merge_custom</span><span style="color: #e6edf3">(self,</span> <span style="color: #e6edf3">config):</span>
 <span style="color: #6e7681">    </span><span style="color: #a5d6ff">"""</span>
 <span style="color: #a5d6ff">    Merge a config into the custom config.</span>
 <span style="color: #a5d6ff">    """</span>
@@ -1162,11 +1194,11 @@
 <p>Merge a config into the default config.</p>
 <details class="quote">
 <summary>Source code in <code>bbot/core/core.py</code></summary>
-<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">160</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">161</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">162</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">163</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">164</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">merge_default</span><span style="color: #e6edf3">(self,</span> <span style="color: #e6edf3">config):</span>
+<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">175</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">176</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">177</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">178</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">179</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">merge_default</span><span style="color: #e6edf3">(self,</span> <span style="color: #e6edf3">config):</span>
 <span style="color: #6e7681">    </span><span style="color: #a5d6ff">"""</span>
 <span style="color: #a5d6ff">    Merge a config into the default config.</span>
 <span style="color: #a5d6ff">    """</span>
