@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.29w4kgor.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.r_xhxo_y.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -666,6 +666,9 @@ Is the same as:
 <span style="color: #8b949e; font-style: italic">### SCOPE ###</span>
 
 <span style="color: #7ee787">scope</span><span style="color: #e6edf3">:</span>
+<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># strict scope means only exact DNS names are considered in-scope</span>
+<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># subdomains are not included unless they are explicitly provided in the target list</span>
+<span style="color: #6e7681">  </span><span style="color: #7ee787">strict</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">false</span>
 <span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># Filter by scope distance which events are displayed in the output</span>
 <span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># 0 == show only in-scope events (affiliates are always shown)</span>
 <span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># 1 == show all events up to distance-1 (1 hop from target)</span>
@@ -1571,15 +1574,9 @@ Is the same as:
 <td></td>
 </tr>
 <tr>
-<td>modules.censys.api_id</td>
+<td>modules.censys.api_key</td>
 <td>str</td>
-<td>Censys.io API ID</td>
-<td></td>
-</tr>
-<tr>
-<td>modules.censys.api_secret</td>
-<td>str</td>
-<td>Censys.io API Secret</td>
+<td>Censys.io API Key in the format of 'key:secret'</td>
 <td></td>
 </tr>
 <tr>
@@ -1795,13 +1792,7 @@ Is the same as:
 <tr>
 <td>modules.passivetotal.api_key</td>
 <td>str</td>
-<td>RiskIQ API Key</td>
-<td></td>
-</tr>
-<tr>
-<td>modules.passivetotal.username</td>
-<td>str</td>
-<td>RiskIQ Username</td>
+<td>PassiveTotal API Key in the format of 'username:api_key'</td>
 <td></td>
 </tr>
 <tr>
@@ -2057,6 +2048,36 @@ Is the same as:
 <td>neo4j</td>
 </tr>
 <tr>
+<td>modules.postgres.database</td>
+<td>str</td>
+<td>The database name to connect to</td>
+<td>bbot</td>
+</tr>
+<tr>
+<td>modules.postgres.host</td>
+<td>str</td>
+<td>The server running Postgres</td>
+<td>localhost</td>
+</tr>
+<tr>
+<td>modules.postgres.password</td>
+<td>str</td>
+<td>The password to connect to Postgres</td>
+<td>bbotislife</td>
+</tr>
+<tr>
+<td>modules.postgres.port</td>
+<td>int</td>
+<td>The port to connect to Postgres</td>
+<td>5432</td>
+</tr>
+<tr>
+<td>modules.postgres.username</td>
+<td>str</td>
+<td>The username to connect to Postgres</td>
+<td>postgres</td>
+</tr>
+<tr>
 <td>modules.slack.event_types</td>
 <td>list</td>
 <td>Types of events to send</td>
@@ -2223,6 +2244,12 @@ Is the same as:
 <td>int</td>
 <td>Sets the maximum amount of text that can extracted from a YARA regex</td>
 <td>2000</td>
+</tr>
+<tr>
+<td>modules.speculate.essential_only</td>
+<td>bool</td>
+<td>Only enable essential speculate features (no extra discovery)</td>
+<td>False</td>
 </tr>
 <tr>
 <td>modules.speculate.max_hosts</td>
