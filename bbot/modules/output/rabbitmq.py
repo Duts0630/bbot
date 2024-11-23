@@ -39,10 +39,16 @@ class RabbitMQ(BaseOutputModule):
         event_data = json.dumps(event_json).encode("utf-8")
 
         # Publish the message to the queue
-        await self.channel.default_exchange.publish(
-            aio_pika.Message(body=event_data),
-            routing_key=self.queue_name,
-        )
+        while 1:
+            try:
+                await self.channel.default_exchange.publish(
+                    aio_pika.Message(body=event_data),
+                    routing_key=self.queue_name,
+                )
+                break
+            except Exception as e:
+                self.error(f"Error publishing message to RabbitMQ: {e}, rerying...")
+                await self.helpers.sleep(1)
 
     async def cleanup(self):
         # Close the connection
