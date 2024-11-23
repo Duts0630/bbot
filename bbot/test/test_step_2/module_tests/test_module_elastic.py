@@ -1,4 +1,3 @@
-import time
 import httpx
 import asyncio
 
@@ -39,18 +38,10 @@ class TestElastic(ModuleTestBase):
             "docker.elastic.co/elasticsearch/elasticsearch:8.16.0",
         )
 
+        await self.wait_for_port_open(9200)
+
         # Connect to Elasticsearch with retry logic
         async with httpx.AsyncClient(verify=False) as client:
-            while True:
-                try:
-                    # Attempt a simple operation to confirm the connection
-                    response = await client.get("https://localhost:9200/_cat/health", auth=("elastic", "bbotislife"))
-                    response.raise_for_status()
-                    break
-                except Exception as e:
-                    self.log.verbose(f"Connection failed: {e}. Retrying...")
-                    time.sleep(0.5)
-
             # Ensure the index is empty
             await client.delete(f"https://localhost:9200/bbot_test_events", auth=("elastic", "bbotislife"))
 
