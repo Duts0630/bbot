@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.hyyh4vuq.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.0y8x0nyy.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -2173,7 +2173,17 @@
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1324</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1325</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1326</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1327</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">class</span> <span style="color: #f0883e; font-weight: bold">Scanner</span><span style="color: #e6edf3">:</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1327</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1328</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1329</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1330</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1331</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1332</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1333</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1334</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1335</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1336</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1337</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">class</span> <span style="color: #f0883e; font-weight: bold">Scanner</span><span style="color: #e6edf3">:</span>
 <span style="color: #6e7681">    </span><span style="color: #a5d6ff">"""A class representing a single BBOT scan</span>
 
 <span style="color: #a5d6ff">    Examples:</span>
@@ -3241,9 +3251,19 @@
             <span style="color: #e6edf3">regexes_component_list</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">[]</span>
             <span style="color: #ff7b72">for</span> <span style="color: #e6edf3">i,</span> <span style="color: #e6edf3">r</span> <span style="color: #ff7b72; font-weight: bold">in</span> <span style="color: #e6edf3">enumerate(self</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">dns_regexes_yara):</span>
                 <span style="color: #e6edf3">regexes_component_list</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">append(</span><span style="color: #79c0ff">rf</span><span style="color: #a5d6ff">"$dns_name_{</span><span style="color: #e6edf3">i</span><span style="color: #a5d6ff">} = /\b{</span><span style="color: #e6edf3">r</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">pattern</span><span style="color: #a5d6ff">}/ nocase"</span><span style="color: #e6edf3">)</span>
-            <span style="color: #ff7b72">if</span> <span style="color: #e6edf3">regexes_component_list:</span>
-                <span style="color: #e6edf3">regexes_component</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #a5d6ff">" "</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">join(regexes_component_list)</span>
-                <span style="color: #e6edf3">self</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">_dns_yara_rules_uncompiled</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #79c0ff">f</span><span style="color: #a5d6ff">'rule hostname_extraction </span><span style="color: #79c0ff">{{</span><span style="color: #a5d6ff">meta: description = "matches DNS hostname pattern derived from target(s)" strings: {</span><span style="color: #e6edf3">regexes_component</span><span style="color: #a5d6ff">} condition: any of them</span><span style="color: #79c0ff">}}</span><span style="color: #a5d6ff">'</span>
+
+            <span style="color: #8b949e; font-style: italic"># Chunk the regexes into groups of 10,000</span>
+            <span style="color: #e6edf3">chunk_size</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #a5d6ff">10000</span>
+            <span style="color: #e6edf3">rules</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">{}</span>
+            <span style="color: #ff7b72">for</span> <span style="color: #e6edf3">chunk_index</span> <span style="color: #ff7b72; font-weight: bold">in</span> <span style="color: #e6edf3">range(</span><span style="color: #a5d6ff">0</span><span style="color: #e6edf3">,</span> <span style="color: #e6edf3">len(regexes_component_list),</span> <span style="color: #e6edf3">chunk_size):</span>
+                <span style="color: #e6edf3">chunk</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">regexes_component_list[chunk_index</span> <span style="color: #e6edf3">:</span> <span style="color: #e6edf3">chunk_index</span> <span style="color: #ff7b72; font-weight: bold">+</span> <span style="color: #e6edf3">chunk_size]</span>
+                <span style="color: #ff7b72">if</span> <span style="color: #e6edf3">chunk:</span>
+                    <span style="color: #e6edf3">regexes_component</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #a5d6ff">" "</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">join(chunk)</span>
+                    <span style="color: #e6edf3">rule_name</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #79c0ff">f</span><span style="color: #a5d6ff">"hostname_extraction_{</span><span style="color: #e6edf3">chunk_index</span><span style="color: #6e7681"> </span><span style="color: #ff7b72; font-weight: bold">//</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">chunk_size</span><span style="color: #a5d6ff">}"</span>
+                    <span style="color: #e6edf3">rule</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #79c0ff">f</span><span style="color: #a5d6ff">'rule {</span><span style="color: #e6edf3">rule_name</span><span style="color: #a5d6ff">} </span><span style="color: #79c0ff">{{</span><span style="color: #a5d6ff">meta: description = "matches DNS hostname pattern derived from target(s)" strings: {</span><span style="color: #e6edf3">regexes_component</span><span style="color: #a5d6ff">} condition: any of them</span><span style="color: #79c0ff">}}</span><span style="color: #a5d6ff">'</span>
+                    <span style="color: #e6edf3">rules[rule_name]</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">rule</span>
+
+            <span style="color: #e6edf3">self</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">_dns_yara_rules_uncompiled</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #e6edf3">rules</span>
         <span style="color: #ff7b72">return</span> <span style="color: #e6edf3">self</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">_dns_yara_rules_uncompiled</span>
 
     <span style="color: #ff7b72">async</span> <span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">dns_yara_rules</span><span style="color: #e6edf3">(self):</span>
@@ -3252,7 +3272,7 @@
                 <span style="color: #ff7b72">import</span> <span style="color: #ff7b72">yara</span>
 
                 <span style="color: #e6edf3">self</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">_dns_yara_rules</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #ff7b72">await</span> <span style="color: #e6edf3">self</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">helpers</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">run_in_executor(</span>
-                    <span style="color: #e6edf3">yara</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">compile,</span> <span style="color: #e6edf3">source</span><span style="color: #ff7b72; font-weight: bold">=</span><span style="color: #e6edf3">self</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">dns_yara_rules_uncompiled</span>
+                    <span style="color: #e6edf3">yara</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">compile,</span> <span style="color: #e6edf3">source</span><span style="color: #ff7b72; font-weight: bold">=</span><span style="color: #a5d6ff">"</span><span style="color: #79c0ff">\n</span><span style="color: #a5d6ff">"</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">join(self</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">dns_yara_rules_uncompiled</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">values())</span>
                 <span style="color: #e6edf3">)</span>
         <span style="color: #ff7b72">return</span> <span style="color: #e6edf3">self</span><span style="color: #ff7b72; font-weight: bold">.</span><span style="color: #e6edf3">_dns_yara_rules</span>
 
@@ -4210,22 +4230,22 @@ Otherwise, <code>Scan</code> accepts the same arguments as <code>Preset</code>, 
 </code></pre></div>
 <details class="quote">
 <summary>Source code in <code>bbot/scanner/scanner.py</code></summary>
-<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1107</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1108</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1109</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1110</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1111</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1112</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1113</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1114</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1115</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1116</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1117</span>
+<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1117</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1118</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1119</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1120</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1121</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1122</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">async</span> <span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">extract_in_scope_hostnames</span><span style="color: #e6edf3">(self,</span> <span style="color: #e6edf3">s):</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1122</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1123</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1124</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1125</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1126</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1127</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1128</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1129</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1130</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1131</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">1132</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">async</span> <span style="color: #ff7b72">def</span> <span style="color: #d2a8ff; font-weight: bold">extract_in_scope_hostnames</span><span style="color: #e6edf3">(self,</span> <span style="color: #e6edf3">s):</span>
 <span style="color: #6e7681">    </span><span style="color: #a5d6ff">"""</span>
 <span style="color: #a5d6ff">    Given a string, uses yara to extract hostnames matching scan targets</span>
 
