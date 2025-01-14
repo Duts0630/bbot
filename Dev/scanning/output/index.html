@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.jdy0f1lk.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.j_fuypct.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -759,8 +759,8 @@
 <!-- END BBOT MODULE OPTIONS STDOUT -->
 <h3 id="txt">TXT</h3>
 <p><code>txt</code> output is tab-delimited, so it's easy to grep:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic"># grep out only the DNS_NAMEs</span>
-cat<span style="color: #6e7681"> </span>~/.bbot/scans/extreme_johnny/output.txt<span style="color: #6e7681"> </span><span style="color: #e6edf3">|</span><span style="color: #6e7681"> </span>grep<span style="color: #6e7681"> </span><span style="color: #a5d6ff">'[DNS_NAME]'</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">|</span><span style="color: #6e7681"> </span>cut<span style="color: #6e7681"> </span>-f2
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># grep out only the DNS_NAMEs</span>
+cat<span style="color: #6E7681"> </span>~/.bbot/scans/extreme_johnny/output.txt<span style="color: #6E7681"> </span><span style="color: #E6EDF3">|</span><span style="color: #6E7681"> </span>grep<span style="color: #6E7681"> </span><span style="color: #A5D6FF">'[DNS_NAME]'</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">|</span><span style="color: #6E7681"> </span>cut<span style="color: #6E7681"> </span>-f2
 evilcorp.com
 www.evilcorp.com
 mail.evilcorp.com
@@ -815,26 +815,26 @@ mail.evilcorp.com
 </table>
 <h3 id="json">JSON</h3>
 <p>If you manually enable the <code>json</code> output module, it will go to stdout:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>-om<span style="color: #6e7681"> </span>json<span style="color: #6e7681"> </span><span style="color: #e6edf3">|</span><span style="color: #6e7681"> </span>jq
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>evilcorp.com<span style="color: #6E7681"> </span>-om<span style="color: #6E7681"> </span>json<span style="color: #6E7681"> </span><span style="color: #E6EDF3">|</span><span style="color: #6E7681"> </span>jq
 </code></pre></div>
 <p>You will then see <a href="../events/">events</a> like this:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #e6edf3">{</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">"type"</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">"IP_ADDRESS"</span><span style="color: #e6edf3">,</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">"id"</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">"IP_ADDRESS:13cd09c2adf0860a582240229cd7ad1dccdb5eb1"</span><span style="color: #e6edf3">,</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">"data"</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">"1.2.3.4"</span><span style="color: #e6edf3">,</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">"scope_distance"</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">1</span><span style="color: #e6edf3">,</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">"scan"</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">"SCAN:64c0e076516ae7aa6502fd99489693d0d5ec26cc"</span><span style="color: #e6edf3">,</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">"timestamp"</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">1688518967.740472</span><span style="color: #e6edf3">,</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">"resolved_hosts"</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">[</span><span style="color: #a5d6ff">"1.2.3.4"</span><span style="color: #e6edf3">],</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">"parent"</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">"DNS_NAME:2da045542abbf86723f22383d04eb453e573723c"</span><span style="color: #e6edf3">,</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">"tags"</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">[</span><span style="color: #a5d6ff">"distance-1"</span><span style="color: #e6edf3">,</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">"ipv4"</span><span style="color: #e6edf3">,</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">"internal"</span><span style="color: #e6edf3">],</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">"module"</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">"A"</span><span style="color: #e6edf3">,</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">"module_sequence"</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">"A"</span>
-<span style="color: #e6edf3">}</span>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #E6EDF3">{</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">"type"</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">"IP_ADDRESS"</span><span style="color: #E6EDF3">,</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">"id"</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">"IP_ADDRESS:13cd09c2adf0860a582240229cd7ad1dccdb5eb1"</span><span style="color: #E6EDF3">,</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">"data"</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">"1.2.3.4"</span><span style="color: #E6EDF3">,</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">"scope_distance"</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">1</span><span style="color: #E6EDF3">,</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">"scan"</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">"SCAN:64c0e076516ae7aa6502fd99489693d0d5ec26cc"</span><span style="color: #E6EDF3">,</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">"timestamp"</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">1688518967.740472</span><span style="color: #E6EDF3">,</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">"resolved_hosts"</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">[</span><span style="color: #A5D6FF">"1.2.3.4"</span><span style="color: #E6EDF3">],</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">"parent"</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">"DNS_NAME:2da045542abbf86723f22383d04eb453e573723c"</span><span style="color: #E6EDF3">,</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">"tags"</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">[</span><span style="color: #A5D6FF">"distance-1"</span><span style="color: #E6EDF3">,</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">"ipv4"</span><span style="color: #E6EDF3">,</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">"internal"</span><span style="color: #E6EDF3">],</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">"module"</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">"A"</span><span style="color: #E6EDF3">,</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">"module_sequence"</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">"A"</span>
+<span style="color: #E6EDF3">}</span>
 </code></pre></div>
 <p>You can filter on the JSON output with <code>jq</code>:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic"># pull out only the .data attribute of every DNS_NAME</span>
-$<span style="color: #6e7681"> </span>jq<span style="color: #6e7681"> </span>-r<span style="color: #6e7681"> </span><span style="color: #a5d6ff">'select(.type=="DNS_NAME") | .data'</span><span style="color: #6e7681"> </span>~/.bbot/scans/extreme_johnny/output.json
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># pull out only the .data attribute of every DNS_NAME</span>
+$<span style="color: #6E7681"> </span>jq<span style="color: #6E7681"> </span>-r<span style="color: #6E7681"> </span><span style="color: #A5D6FF">'select(.type=="DNS_NAME") | .data'</span><span style="color: #6E7681"> </span>~/.bbot/scans/extreme_johnny/output.json
 evilcorp.com
 www.evilcorp.com
 mail.evilcorp.com
@@ -842,81 +842,81 @@ mail.evilcorp.com
 <h3 id="discord-slack-teams">Discord / Slack / Teams</h3>
 <p><img alt="bbot-discord" src="https://github.com/blacklanternsecurity/bbot/assets/20261699/6d88045c-8eac-43b6-8de9-c621ecf60c2d"/></p>
 <p>BBOT supports output via webhooks to <code>discord</code>, <code>slack</code>, and <code>teams</code>. To use them, you must specify a webhook URL either in the config:</p>
-<div class="highlight" style="background: #0d1117"><span class="filename">discord_preset.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7ee787">config</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">modules</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">    </span><span style="color: #7ee787">discord</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">webhook_url</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">https://discord.com/api/webhooks/1234/deadbeef</span>
+<div class="highlight" style="background: #0d1117"><span class="filename">discord_preset.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">config</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">    </span><span style="color: #7EE787">discord</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">webhook_url</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">https://discord.com/api/webhooks/1234/deadbeef</span>
 </code></pre></div>
 <p>...or on the command line:
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>-om<span style="color: #6e7681"> </span>discord<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span>modules.discord.webhook_url<span style="color: #ff7b72; font-weight: bold">=</span>https://discord.com/api/webhooks/1234/deadbeef
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>evilcorp.com<span style="color: #6E7681"> </span>-om<span style="color: #6E7681"> </span>discord<span style="color: #6E7681"> </span>-c<span style="color: #6E7681"> </span>modules.discord.webhook_url<span style="color: #FF7B72; font-weight: bold">=</span>https://discord.com/api/webhooks/1234/deadbeef
 </code></pre></div></p>
 <p>By default, only <code>VULNERABILITY</code> and <code>FINDING</code> events are sent, but this can be customized by setting <code>event_types</code> in the config like so:</p>
-<div class="highlight" style="background: #0d1117"><span class="filename">discord_preset.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7ee787">config</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">modules</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">    </span><span style="color: #7ee787">discord</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">event_types</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">        </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">VULNERABILITY</span>
-<span style="color: #6e7681">        </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">FINDING</span>
-<span style="color: #6e7681">        </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">STORAGE_BUCKET</span>
+<div class="highlight" style="background: #0d1117"><span class="filename">discord_preset.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">config</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">    </span><span style="color: #7EE787">discord</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">event_types</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">        </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">VULNERABILITY</span>
+<span style="color: #6E7681">        </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">FINDING</span>
+<span style="color: #6E7681">        </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">STORAGE_BUCKET</span>
 </code></pre></div>
 <p>...or on the command line:
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>-om<span style="color: #6e7681"> </span>discord<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span>modules.discord.event_types<span style="color: #ff7b72; font-weight: bold">=[</span><span style="color: #a5d6ff">"STORAGE_BUCKET"</span>,<span style="color: #a5d6ff">"FINDING"</span>,<span style="color: #a5d6ff">"VULNERABILITY"</span><span style="color: #ff7b72; font-weight: bold">]</span>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>evilcorp.com<span style="color: #6E7681"> </span>-om<span style="color: #6E7681"> </span>discord<span style="color: #6E7681"> </span>-c<span style="color: #6E7681"> </span>modules.discord.event_types<span style="color: #FF7B72; font-weight: bold">=[</span><span style="color: #A5D6FF">"STORAGE_BUCKET"</span>,<span style="color: #A5D6FF">"FINDING"</span>,<span style="color: #A5D6FF">"VULNERABILITY"</span><span style="color: #FF7B72; font-weight: bold">]</span>
 </code></pre></div></p>
 <p>You can also filter on the severity of <code>VULNERABILITY</code> events by setting <code>min_severity</code>:</p>
-<div class="highlight" style="background: #0d1117"><span class="filename">discord_preset.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7ee787">config</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">modules</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">    </span><span style="color: #7ee787">discord</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">min_severity</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">HIGH</span>
+<div class="highlight" style="background: #0d1117"><span class="filename">discord_preset.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">config</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">    </span><span style="color: #7EE787">discord</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">min_severity</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">HIGH</span>
 </code></pre></div>
 <h3 id="http">HTTP</h3>
 <p>The <code>http</code> output module sends <a href="../events/">events</a> in JSON format to a desired HTTP endpoint.</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic"># POST scan results to localhost</span>
-bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>-om<span style="color: #6e7681"> </span>http<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span>modules.http.url<span style="color: #ff7b72; font-weight: bold">=</span>http://localhost:8000
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># POST scan results to localhost</span>
+bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>evilcorp.com<span style="color: #6E7681"> </span>-om<span style="color: #6E7681"> </span>http<span style="color: #6E7681"> </span>-c<span style="color: #6E7681"> </span>modules.http.url<span style="color: #FF7B72; font-weight: bold">=</span>http://localhost:8000
 </code></pre></div>
 <p>You can customize the HTTP method if needed. Authentication is also supported:</p>
-<div class="highlight" style="background: #0d1117"><span class="filename">http_preset.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7ee787">config</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">modules</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">    </span><span style="color: #7ee787">http</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">url</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">https://localhost:8000</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">method</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">PUT</span>
-<span style="color: #6e7681">      </span><span style="color: #8b949e; font-style: italic"># Authorization: Bearer</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">bearer</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">&lt;bearer_token&gt;</span>
-<span style="color: #6e7681">      </span><span style="color: #8b949e; font-style: italic"># OR</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">username</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">bob</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">password</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">P@ssw0rd</span>
+<div class="highlight" style="background: #0d1117"><span class="filename">http_preset.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">config</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">    </span><span style="color: #7EE787">http</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">url</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">https://localhost:8000</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">method</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">PUT</span>
+<span style="color: #6E7681">      </span><span style="color: #8B949E; font-style: italic"># Authorization: Bearer</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">bearer</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">&lt;bearer_token&gt;</span>
+<span style="color: #6E7681">      </span><span style="color: #8B949E; font-style: italic"># OR</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">username</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">bob</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">password</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">P@ssw0rd</span>
 </code></pre></div>
 <h3 id="elasticsearch">Elasticsearch</h3>
 <p>When outputting to Elastic, use the <code>http</code> output module with the following settings (replace <code>&lt;your_index&gt;</code> with your desired index, e.g. <code>bbot</code>):</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic"># send scan results directly to elasticsearch</span>
-bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>-om<span style="color: #6e7681"> </span>http<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span><span style="color: #79c0ff">\</span>
-<span style="color: #6e7681">  </span>modules.http.url<span style="color: #ff7b72; font-weight: bold">=</span>http://localhost:8000/&lt;your_index&gt;/_doc<span style="color: #6e7681"> </span><span style="color: #79c0ff">\</span>
-<span style="color: #6e7681">  </span>modules.http.siem_friendly<span style="color: #ff7b72; font-weight: bold">=</span><span style="color: #e6edf3">true</span><span style="color: #6e7681"> </span><span style="color: #79c0ff">\</span>
-<span style="color: #6e7681">  </span>modules.http.username<span style="color: #ff7b72; font-weight: bold">=</span>elastic<span style="color: #6e7681"> </span><span style="color: #79c0ff">\</span>
-<span style="color: #6e7681">  </span>modules.http.password<span style="color: #ff7b72; font-weight: bold">=</span>changeme
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># send scan results directly to elasticsearch</span>
+bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>evilcorp.com<span style="color: #6E7681"> </span>-om<span style="color: #6E7681"> </span>http<span style="color: #6E7681"> </span>-c<span style="color: #6E7681"> </span><span style="color: #79C0FF">\</span>
+<span style="color: #6E7681">  </span>modules.http.url<span style="color: #FF7B72; font-weight: bold">=</span>http://localhost:8000/&lt;your_index&gt;/_doc<span style="color: #6E7681"> </span><span style="color: #79C0FF">\</span>
+<span style="color: #6E7681">  </span>modules.http.siem_friendly<span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #E6EDF3">true</span><span style="color: #6E7681"> </span><span style="color: #79C0FF">\</span>
+<span style="color: #6E7681">  </span>modules.http.username<span style="color: #FF7B72; font-weight: bold">=</span>elastic<span style="color: #6E7681"> </span><span style="color: #79C0FF">\</span>
+<span style="color: #6E7681">  </span>modules.http.password<span style="color: #FF7B72; font-weight: bold">=</span>changeme
 </code></pre></div>
 <p>Alternatively, via a preset:</p>
-<div class="highlight" style="background: #0d1117"><span class="filename">elastic_preset.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7ee787">config</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">modules</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">    </span><span style="color: #7ee787">http</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">url</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">http://localhost:8000/&lt;your_index&gt;/_doc</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">siem_friendly</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">true</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">username</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">elastic</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">password</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">changeme</span>
+<div class="highlight" style="background: #0d1117"><span class="filename">elastic_preset.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">config</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">    </span><span style="color: #7EE787">http</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">url</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">http://localhost:8000/&lt;your_index&gt;/_doc</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">siem_friendly</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">true</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">username</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">elastic</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">password</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">changeme</span>
 </code></pre></div>
 <h3 id="splunk">Splunk</h3>
 <p>The <code>splunk</code> output module sends <a href="../events/">events</a> in JSON format to a desired splunk instance via <a href="https://docs.splunk.com/Documentation/Splunk/9.2.0/Data/UsetheHTTPEventCollector">HEC</a>.</p>
 <p>You can customize this output with the following config options:</p>
-<div class="highlight" style="background: #0d1117"><span class="filename">splunk_preset.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7ee787">config</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">modules</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">    </span><span style="color: #7ee787">splunk</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">      </span><span style="color: #8b949e; font-style: italic"># The full URL with the URI `/services/collector/event`</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">url</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">https://localhost:8088/services/collector/event</span>
-<span style="color: #6e7681">      </span><span style="color: #8b949e; font-style: italic"># Generated from splunk webui</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">hectoken</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</span>
-<span style="color: #6e7681">      </span><span style="color: #8b949e; font-style: italic"># Defaults to `main` if not set</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">index</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">my-specific-index</span>
-<span style="color: #6e7681">      </span><span style="color: #8b949e; font-style: italic"># Defaults to `bbot` if not set</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">source</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">/my/source.json</span>
+<div class="highlight" style="background: #0d1117"><span class="filename">splunk_preset.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">config</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">    </span><span style="color: #7EE787">splunk</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">      </span><span style="color: #8B949E; font-style: italic"># The full URL with the URI `/services/collector/event`</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">url</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">https://localhost:8088/services/collector/event</span>
+<span style="color: #6E7681">      </span><span style="color: #8B949E; font-style: italic"># Generated from splunk webui</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">hectoken</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</span>
+<span style="color: #6E7681">      </span><span style="color: #8B949E; font-style: italic"># Defaults to `main` if not set</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">index</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">my-specific-index</span>
+<span style="color: #6E7681">      </span><span style="color: #8B949E; font-style: italic"># Defaults to `bbot` if not set</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">source</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">/my/source.json</span>
 </code></pre></div>
 <h3 id="asset-inventory">Asset Inventory</h3>
 <p>The <code>asset_inventory</code> module produces a CSV like this:</p>
@@ -956,36 +956,36 @@ bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>
 </table>
 <h3 id="sqlite">SQLite</h3>
 <p>The <code>sqlite</code> output module produces a SQLite database containing all events, scans, and targets. By default, it will be saved in the scan directory as <code>output.sqlite</code>.</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic"># specifying a custom database path</span>
-bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>-om<span style="color: #6e7681"> </span>sqlite<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span>modules.sqlite.database<span style="color: #ff7b72; font-weight: bold">=</span>/tmp/bbot.sqlite
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># specifying a custom database path</span>
+bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>evilcorp.com<span style="color: #6E7681"> </span>-om<span style="color: #6E7681"> </span>sqlite<span style="color: #6E7681"> </span>-c<span style="color: #6E7681"> </span>modules.sqlite.database<span style="color: #FF7B72; font-weight: bold">=</span>/tmp/bbot.sqlite
 </code></pre></div>
 <h3 id="postgres">Postgres</h3>
 <p>The <code>postgres</code> output module allows you to ingest events, scans, and targets into a Postgres database. By default, it will connect to the server on <code>localhost</code> with a username of <code>postgres</code> and password of <code>bbotislife</code>. You can change this behavior in the config.</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic"># specifying an alternate database</span>
-bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>-om<span style="color: #6e7681"> </span>postgres<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span>modules.postgres.database<span style="color: #ff7b72; font-weight: bold">=</span>custom_bbot_db
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># specifying an alternate database</span>
+bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>evilcorp.com<span style="color: #6E7681"> </span>-om<span style="color: #6E7681"> </span>postgres<span style="color: #6E7681"> </span>-c<span style="color: #6E7681"> </span>modules.postgres.database<span style="color: #FF7B72; font-weight: bold">=</span>custom_bbot_db
 </code></pre></div>
-<div class="highlight" style="background: #0d1117"><span class="filename">postgres_preset.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7ee787">config</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">modules</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">    </span><span style="color: #7ee787">postgres</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">host</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">psq.fsociety.local</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">database</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">custom_bbot_db</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">port</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">5432</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">username</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">postgres</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">password</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">bbotislife</span>
+<div class="highlight" style="background: #0d1117"><span class="filename">postgres_preset.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">config</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">    </span><span style="color: #7EE787">postgres</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">host</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">psq.fsociety.local</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">database</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">custom_bbot_db</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">port</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">5432</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">username</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">postgres</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">password</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">bbotislife</span>
 </code></pre></div>
 <h3 id="mysql">MySQL</h3>
 <p>The <code>mysql</code> output module allows you to ingest events, scans, and targets into a MySQL database. By default, it will connect to the server on <code>localhost</code> with a username of <code>root</code> and password of <code>bbotislife</code>. You can change this behavior in the config.</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic"># specifying an alternate database</span>
-bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>-om<span style="color: #6e7681"> </span>mysql<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span>modules.mysql.database<span style="color: #ff7b72; font-weight: bold">=</span>custom_bbot_db
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># specifying an alternate database</span>
+bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>evilcorp.com<span style="color: #6E7681"> </span>-om<span style="color: #6E7681"> </span>mysql<span style="color: #6E7681"> </span>-c<span style="color: #6E7681"> </span>modules.mysql.database<span style="color: #FF7B72; font-weight: bold">=</span>custom_bbot_db
 </code></pre></div>
-<div class="highlight" style="background: #0d1117"><span class="filename">mysql_preset.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7ee787">config</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">modules</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">    </span><span style="color: #7ee787">mysql</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">host</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">mysql.fsociety.local</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">database</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">custom_bbot_db</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">port</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">3306</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">username</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">root</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">password</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">bbotislife</span>
+<div class="highlight" style="background: #0d1117"><span class="filename">mysql_preset.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">config</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">    </span><span style="color: #7EE787">mysql</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">host</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">mysql.fsociety.local</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">database</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">custom_bbot_db</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">port</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">3306</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">username</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">root</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">password</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">bbotislife</span>
 </code></pre></div>
 <h3 id="subdomains">Subdomains</h3>
 <p>The <code>subdomains</code> output module produces simple text file containing only in-scope and resolved subdomains:</p>
@@ -1000,13 +1000,13 @@ portal.evilcorp.com
 <ul>
 <li>You can get Neo4j up and running with a single docker command:</li>
 </ul>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic"># start Neo4j in the background with docker</span>
-docker<span style="color: #6e7681"> </span>run<span style="color: #6e7681"> </span>-d<span style="color: #6e7681"> </span>-p<span style="color: #6e7681"> </span><span style="color: #a5d6ff">7687</span>:7687<span style="color: #6e7681"> </span>-p<span style="color: #6e7681"> </span><span style="color: #a5d6ff">7474</span>:7474<span style="color: #6e7681"> </span>-v<span style="color: #6e7681"> </span><span style="color: #a5d6ff">"</span><span style="color: #ff7b72">$(</span><span style="color: #e6edf3">pwd</span><span style="color: #ff7b72">)</span><span style="color: #a5d6ff">/neo4j/:/data/"</span><span style="color: #6e7681"> </span>-e<span style="color: #6e7681"> </span><span style="color: #79c0ff">NEO4J_AUTH</span><span style="color: #ff7b72; font-weight: bold">=</span>neo4j/bbotislife<span style="color: #6e7681"> </span>neo4j
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># start Neo4j in the background with docker</span>
+docker<span style="color: #6E7681"> </span>run<span style="color: #6E7681"> </span>-d<span style="color: #6E7681"> </span>-p<span style="color: #6E7681"> </span><span style="color: #A5D6FF">7687</span>:7687<span style="color: #6E7681"> </span>-p<span style="color: #6E7681"> </span><span style="color: #A5D6FF">7474</span>:7474<span style="color: #6E7681"> </span>-v<span style="color: #6E7681"> </span><span style="color: #A5D6FF">"</span><span style="color: #FF7B72">$(</span><span style="color: #E6EDF3">pwd</span><span style="color: #FF7B72">)</span><span style="color: #A5D6FF">/neo4j/:/data/"</span><span style="color: #6E7681"> </span>-e<span style="color: #6E7681"> </span><span style="color: #79C0FF">NEO4J_AUTH</span><span style="color: #FF7B72; font-weight: bold">=</span>neo4j/bbotislife<span style="color: #6E7681"> </span>neo4j
 </code></pre></div>
 <ul>
 <li>After that, run bbot with <code>-om neo4j</code></li>
 </ul>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6e7681"> </span>-f<span style="color: #6e7681"> </span>subdomain-enum<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>-om<span style="color: #6e7681"> </span>neo4j
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6E7681"> </span>-f<span style="color: #6E7681"> </span>subdomain-enum<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>evilcorp.com<span style="color: #6E7681"> </span>-om<span style="color: #6E7681"> </span>neo4j
 </code></pre></div>
 <ul>
 <li>Log in at <a href="http://localhost:7474">http://localhost:7474</a> with <code>neo4j</code> / <code>bbotislife</code></li>
@@ -1021,27 +1021,27 @@ docker<span style="color: #6e7681"> </span>run<span style="color: #6e7681"> </sp
 - The WHERE statement allows the query to filter on any of the BBOT event properties like data, tag, or even the label itself.
 - The RETURN statement is a general presentation of the whole URL event but this can be narrowed down to present any of the specific properties of the BBOT event (<code>RETURN u.data, u.tags</code>).</p>
 <p>The following are a few recommended queries to get started with:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic">// Get all "in-scope" DNS Nodes and return just data and tags properties</span>
-<span style="color: #ff7b72">MATCH</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">(n:DNS_NAME)</span>
-<span style="color: #ff7b72">WHERE</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">"in-scope"</span><span style="color: #6e7681"> </span><span style="color: #ff7b72">IN</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">n.tags</span>
-<span style="color: #ff7b72">RETURN</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">n.data,</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">n.tags</span>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic">// Get all "in-scope" DNS Nodes and return just data and tags properties</span>
+<span style="color: #FF7B72">MATCH</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">(n:DNS_NAME)</span>
+<span style="color: #FF7B72">WHERE</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">"in-scope"</span><span style="color: #6E7681"> </span><span style="color: #FF7B72">IN</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">n.tags</span>
+<span style="color: #FF7B72">RETURN</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">n.data,</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">n.tags</span>
 </code></pre></div>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic">// Get the count of labels/BBOT events in the Neo4j Database</span>
-<span style="color: #ff7b72">MATCH</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">(n)</span>
-<span style="color: #ff7b72">RETURN</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">labels(n),</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">count(n)</span>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic">// Get the count of labels/BBOT events in the Neo4j Database</span>
+<span style="color: #FF7B72">MATCH</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">(n)</span>
+<span style="color: #FF7B72">RETURN</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">labels(n),</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">count(n)</span>
 </code></pre></div>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic">// Get a graph of open ports associated with each domain</span>
-<span style="color: #ff7b72">MATCH</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">z</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">=</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">((n:DNS_NAME)</span><span style="color: #6e7681"> </span><span style="color: #ff7b72; font-weight: bold">--&gt;</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">(p:OPEN_TCP_PORT))</span>
-<span style="color: #ff7b72">RETURN</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">z</span>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic">// Get a graph of open ports associated with each domain</span>
+<span style="color: #FF7B72">MATCH</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">z</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">=</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">((n:DNS_NAME)</span><span style="color: #6E7681"> </span><span style="color: #FF7B72; font-weight: bold">--&gt;</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">(p:OPEN_TCP_PORT))</span>
+<span style="color: #FF7B72">RETURN</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">z</span>
 </code></pre></div>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic">// Get all domains and IP addresses with open TCP ports</span>
-<span style="color: #ff7b72">MATCH</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">(n)</span><span style="color: #6e7681"> </span><span style="color: #ff7b72; font-weight: bold">--&gt;</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">(p:OPEN_TCP_PORT)</span>
-<span style="color: #ff7b72">WHERE</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">"in-scope"</span><span style="color: #6e7681"> </span><span style="color: #ff7b72">in</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">n.tags</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">and</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">(n:DNS_NAME</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">or</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">n:IP_ADDRESS)</span>
-<span style="color: #ff7b72">WITH</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">*,</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">TAIL(SPLIT(p.data,</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">':'</span><span style="color: #e6edf3">))</span><span style="color: #6e7681"> </span><span style="color: #ff7b72">AS</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">port</span>
-<span style="color: #ff7b72">RETURN</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">n.data,</span><span style="color: #6e7681"> </span><span style="color: #ff7b72">collect</span><span style="color: #e6edf3">(</span><span style="color: #ff7b72">distinct</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">port)</span>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic">// Get all domains and IP addresses with open TCP ports</span>
+<span style="color: #FF7B72">MATCH</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">(n)</span><span style="color: #6E7681"> </span><span style="color: #FF7B72; font-weight: bold">--&gt;</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">(p:OPEN_TCP_PORT)</span>
+<span style="color: #FF7B72">WHERE</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">"in-scope"</span><span style="color: #6E7681"> </span><span style="color: #FF7B72">in</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">n.tags</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">and</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">(n:DNS_NAME</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">or</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">n:IP_ADDRESS)</span>
+<span style="color: #FF7B72">WITH</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">*,</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">TAIL(SPLIT(p.data,</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">':'</span><span style="color: #E6EDF3">))</span><span style="color: #6E7681"> </span><span style="color: #FF7B72">AS</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">port</span>
+<span style="color: #FF7B72">RETURN</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">n.data,</span><span style="color: #6E7681"> </span><span style="color: #FF7B72">collect</span><span style="color: #E6EDF3">(</span><span style="color: #FF7B72">distinct</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">port)</span>
 </code></pre></div>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic">// Clear the database</span>
-<span style="color: #ff7b72">MATCH</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">(n)</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">DETACH</span><span style="color: #6e7681"> </span><span style="color: #ff7b72">DELETE</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">n</span>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic">// Clear the database</span>
+<span style="color: #FF7B72">MATCH</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">(n)</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">DETACH</span><span style="color: #6E7681"> </span><span style="color: #FF7B72">DELETE</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">n</span>
 </code></pre></div>
 <p>This is not an exhaustive list of clauses, filters, or other means to use cypher and should be considered a starting point. To build more advanced queries consider reading Neo4j's Cypher <a href="https://neo4j.com/docs/cypher-manual/current/introduction/">documentation</a>.</p>
 <p>Additional note: these sample queries are dependent on the existence of the data in the target neo4j database.</p>

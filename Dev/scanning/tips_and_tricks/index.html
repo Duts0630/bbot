@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.jdy0f1lk.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.j_fuypct.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -698,23 +698,23 @@
 <h2 id="kill-individual-module-during-scan">Kill Individual Module During Scan</h2>
 <p>Sometimes a certain module can get stuck or slow down the scan. If this happens and you want to kill it, just type "<code>kill &lt;module&gt;</code>" in the terminal and press enter. This will kill and disable the module for the rest of the scan.</p>
 <p>You can also kill multiple modules at a time by specifying them in a space or comma-separated list:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #e6edf3">kill</span><span style="color: #6e7681"> </span>httpx<span style="color: #6e7681"> </span>sslcert
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #E6EDF3">kill</span><span style="color: #6E7681"> </span>httpx<span style="color: #6E7681"> </span>sslcert
 </code></pre></div>
 <p><img src="https://github.com/blacklanternsecurity/bbot/assets/20261699/61ad7123-8879-4c86-afdd-e96d7264b67c" style="max-width: 45em !important"/></p>
 <h2 id="common-config-changes">Common Config Changes</h2>
 <h3 id="speed-up-slow-modules">Speed Up Slow Modules</h3>
 <p>BBOT modules can be parallelized so that more than one instance runs at a time. By default, many modules are already set to reasonable defaults:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #ff7b72">class</span> <span style="color: #f0883e; font-weight: bold">baddns</span><span style="color: #e6edf3">(BaseModule):</span>
-    <span style="color: #e6edf3">module_threads</span> <span style="color: #ff7b72; font-weight: bold">=</span> <span style="color: #a5d6ff">8</span>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #FF7B72">class</span><span style="color: #6E7681"> </span><span style="color: #F0883E; font-weight: bold">baddns</span><span style="color: #E6EDF3">(BaseModule):</span>
+    <span style="color: #E6EDF3">module_threads</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #A5D6FF">8</span>
 </code></pre></div>
 <p>To override this, you can set a module's <code>module_threads</code> in the config:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic"># increase baddns threads to 20</span>
-bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>-m<span style="color: #6e7681"> </span>baddns<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span>modules.baddns.module_threads<span style="color: #ff7b72; font-weight: bold">=</span><span style="color: #a5d6ff">20</span>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># increase baddns threads to 20</span>
+bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>evilcorp.com<span style="color: #6E7681"> </span>-m<span style="color: #6E7681"> </span>baddns<span style="color: #6E7681"> </span>-c<span style="color: #6E7681"> </span>modules.baddns.module_threads<span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #A5D6FF">20</span>
 </code></pre></div>
 <h3 id="boost-dns-brute-force-speed">Boost DNS Brute-force Speed</h3>
 <p>If you have a fast internet connection or are running BBOT from a cloud VM, you can speed up subdomain enumeration by cranking the threads for <code>massdns</code>. The default is <code>1000</code>, which is about 1MB/s of DNS traffic:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic"># massdns with 5000 resolvers, about 5MB/s</span>
-bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>-f<span style="color: #6e7681"> </span>subdomain-enum<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span>dns.brute_threads<span style="color: #ff7b72; font-weight: bold">=</span><span style="color: #a5d6ff">5000</span>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># massdns with 5000 resolvers, about 5MB/s</span>
+bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>evilcorp.com<span style="color: #6E7681"> </span>-f<span style="color: #6E7681"> </span>subdomain-enum<span style="color: #6E7681"> </span>-c<span style="color: #6E7681"> </span>dns.brute_threads<span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #A5D6FF">5000</span>
 </code></pre></div>
 <h3 id="web-spider">Web Spider</h3>
 <p>The web spider is great for finding juicy data like subdomains, email addresses, and javascript secrets buried in webpages. However since it can lengthen the duration of a scan, it's disabled by default. To enable the web spider, you must increase the value of <code>web.spider_distance</code>.</p>
@@ -725,82 +725,82 @@ bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>
 <li><code>web.spider_links_per_page</code> (default: <code>25</code>): the maximum number of links per page that can be followed. This is designed to save you in cases where a single page has hundreds or thousands of links.</li>
 </ul>
 <p>Here is a typical example:</p>
-<div class="highlight" style="background: #0d1117"><span class="filename">spider.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7ee787">config</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">web</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">    </span><span style="color: #7ee787">spider_depth</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">2</span>
-<span style="color: #6e7681">    </span><span style="color: #7ee787">spider_distance</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">2</span>
-<span style="color: #6e7681">    </span><span style="color: #7ee787">spider_links_per_page</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">25</span>
+<div class="highlight" style="background: #0d1117"><span class="filename">spider.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">config</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">web</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">    </span><span style="color: #7EE787">spider_depth</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">2</span>
+<span style="color: #6E7681">    </span><span style="color: #7EE787">spider_distance</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">2</span>
+<span style="color: #6E7681">    </span><span style="color: #7EE787">spider_links_per_page</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">25</span>
 </code></pre></div>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic"># run the web spider against www.evilcorp.com</span>
-bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>www.evilcorp.com<span style="color: #6e7681"> </span>-m<span style="color: #6e7681"> </span>httpx<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span>spider.yml
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># run the web spider against www.evilcorp.com</span>
+bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>www.evilcorp.com<span style="color: #6E7681"> </span>-m<span style="color: #6E7681"> </span>httpx<span style="color: #6E7681"> </span>-c<span style="color: #6E7681"> </span>spider.yml
 </code></pre></div>
 <p>You can also pair the web spider with subdomain enumeration:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic"># spider every subdomain of evilcorp.com</span>
-bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>-f<span style="color: #6e7681"> </span>subdomain-enum<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span>spider.yml
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># spider every subdomain of evilcorp.com</span>
+bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>evilcorp.com<span style="color: #6E7681"> </span>-f<span style="color: #6E7681"> </span>subdomain-enum<span style="color: #6E7681"> </span>-c<span style="color: #6E7681"> </span>spider.yml
 </code></pre></div>
 <h3 id="exclude-cdns-from-port-scan">Exclude CDNs from Port Scan</h3>
 <p>Use <code>--exclude-cdns</code> to filter out unwanted open ports from CDNs and WAFs, e.g. Cloudflare. You can also customize the criteria by setting <code>modules.portfilter.cdn_tags</code>. By default, only open ports with <code>cdn-*</code> tags are filtered, but you can include all cloud providers by setting <code>cdn_tags</code> to <code>cdn,cloud</code>:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>--exclude-cdns<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span>modules.portfilter.cdn_tags<span style="color: #ff7b72; font-weight: bold">=</span>cdn,cloud
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>evilcorp.com<span style="color: #6E7681"> </span>--exclude-cdns<span style="color: #6E7681"> </span>-c<span style="color: #6E7681"> </span>modules.portfilter.cdn_tags<span style="color: #FF7B72; font-weight: bold">=</span>cdn,cloud
 </code></pre></div>
 <p>Additionally, you can customize the allowed ports by setting <code>modules.portscan.allowed_cdn_ports</code>.</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>--exclude-cdns<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span>modules.portfilter.allowed_cdn_ports<span style="color: #ff7b72; font-weight: bold">=</span><span style="color: #a5d6ff">80</span>,443,8443
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>evilcorp.com<span style="color: #6E7681"> </span>--exclude-cdns<span style="color: #6E7681"> </span>-c<span style="color: #6E7681"> </span>modules.portfilter.allowed_cdn_ports<span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #A5D6FF">80</span>,443,8443
 </code></pre></div>
 <p>Example preset:</p>
-<div class="highlight" style="background: #0d1117"><span class="filename">skip_cdns.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7ee787">modules</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">portfilter</span>
+<div class="highlight" style="background: #0d1117"><span class="filename">skip_cdns.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">portfilter</span>
 
-<span style="color: #7ee787">config</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">modules</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">    </span><span style="color: #7ee787">portfilter</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">cdn_tags</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">cdn-,cloud-</span>
-<span style="color: #6e7681">      </span><span style="color: #7ee787">allowed_cdn_ports</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">80,443,8443</span>
+<span style="color: #7EE787">config</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">    </span><span style="color: #7EE787">portfilter</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">cdn_tags</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">cdn-,cloud-</span>
+<span style="color: #6E7681">      </span><span style="color: #7EE787">allowed_cdn_ports</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">80,443,8443</span>
 </code></pre></div>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>-p<span style="color: #6e7681"> </span>skip_cdns.yml
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>evilcorp.com<span style="color: #6E7681"> </span>-p<span style="color: #6E7681"> </span>skip_cdns.yml
 </code></pre></div>
 <h3 id="ingest-bbot-data-into-siem-elastic-splunk">Ingest BBOT Data Into SIEM (Elastic, Splunk)</h3>
 <p>If your goal is to run a BBOT scan and later feed its data into a SIEM such as Elastic, be sure to enable this option when scanning:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span>modules.json.siem_friendly<span style="color: #ff7b72; font-weight: bold">=</span><span style="color: #e6edf3">true</span>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>evilcorp.com<span style="color: #6E7681"> </span>-c<span style="color: #6E7681"> </span>modules.json.siem_friendly<span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #E6EDF3">true</span>
 </code></pre></div>
 <p>This ensures the <code>.data</code> event attribute is always the same type (a dictionary), by nesting it like so:
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #e6edf3">{</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">"type"</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">"DNS_NAME"</span><span style="color: #e6edf3">,</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">"data"</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">{</span>
-<span style="color: #6e7681">    </span><span style="color: #7ee787">"DNS_NAME"</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">"blacklanternsecurity.com"</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">}</span>
-<span style="color: #e6edf3">}</span>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #E6EDF3">{</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">"type"</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">"DNS_NAME"</span><span style="color: #E6EDF3">,</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">"data"</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">{</span>
+<span style="color: #6E7681">    </span><span style="color: #7EE787">"DNS_NAME"</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">"blacklanternsecurity.com"</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">}</span>
+<span style="color: #E6EDF3">}</span>
 </code></pre></div></p>
 <h3 id="custom-http-proxy">Custom HTTP Proxy</h3>
 <p>Web pentesters may appreciate BBOT's ability to quickly populate Burp Suite site maps for all subdomains in a target. If your scan includes gowitness, this will capture the traffic as if you manually visited each website in your browser -- including auxiliary web resources and javascript API calls. To accomplish this, set the <code>web.http_proxy</code> config option like so:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic"># enumerate subdomains, take web screenshots, proxy through Burp</span>
-bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>-f<span style="color: #6e7681"> </span>subdomain-enum<span style="color: #6e7681"> </span>-m<span style="color: #6e7681"> </span>gowitness<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span>web.http_proxy<span style="color: #ff7b72; font-weight: bold">=</span>http://127.0.0.1:8080
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># enumerate subdomains, take web screenshots, proxy through Burp</span>
+bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>evilcorp.com<span style="color: #6E7681"> </span>-f<span style="color: #6E7681"> </span>subdomain-enum<span style="color: #6E7681"> </span>-m<span style="color: #6E7681"> </span>gowitness<span style="color: #6E7681"> </span>-c<span style="color: #6E7681"> </span>web.http_proxy<span style="color: #FF7B72; font-weight: bold">=</span>http://127.0.0.1:8080
 </code></pre></div>
 <h3 id="display-http_response-events">Display <code>HTTP_RESPONSE</code> Events</h3>
 <p>BBOT's <code>httpx</code> module emits <code>HTTP_RESPONSE</code> events, but by default they're hidden from output. These events contain the full raw HTTP body along with headers, etc. If you want to see them, you can modify <code>omit_event_types</code> in the config:</p>
-<div class="highlight" style="background: #0d1117"><span class="filename">~/.bbot/config/bbot.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7ee787">omit_event_types</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">URL_UNVERIFIED</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># - HTTP_RESPONSE</span>
+<div class="highlight" style="background: #0d1117"><span class="filename">~/.bbot/config/bbot.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">omit_event_types</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">URL_UNVERIFIED</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># - HTTP_RESPONSE</span>
 </code></pre></div>
 <h3 id="display-out-of-scope-events">Display Out-of-scope Events</h3>
 <p>By default, BBOT only shows in-scope events (with a few exceptions for things like storage buckets). If you want to see events that BBOT is emitting internally (such as for DNS resolution, etc.), you can increase <code>scope.report_distance</code> in the config or on the command line like so:
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic"># display events up to scope distance 2 (default == 0)</span>
-bbot<span style="color: #6e7681"> </span>-f<span style="color: #6e7681"> </span>subdomain-enum<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span>scope.report_distance<span style="color: #ff7b72; font-weight: bold">=</span><span style="color: #a5d6ff">2</span>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># display events up to scope distance 2 (default == 0)</span>
+bbot<span style="color: #6E7681"> </span>-f<span style="color: #6E7681"> </span>subdomain-enum<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>evilcorp.com<span style="color: #6E7681"> </span>-c<span style="color: #6E7681"> </span>scope.report_distance<span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #A5D6FF">2</span>
 </code></pre></div></p>
 <h3 id="speed-up-scans-by-disabling-dns-resolution">Speed Up Scans By Disabling DNS Resolution</h3>
 <p>If you already have a list of discovered targets (e.g. URLs), you can speed up the scan by skipping BBOT's DNS resolution. You can do this by setting <code>dns.disable</code> to <code>true</code>:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic"># completely disable DNS resolution</span>
-bbot<span style="color: #6e7681"> </span>-m<span style="color: #6e7681"> </span>httpx<span style="color: #6e7681"> </span>gowitness<span style="color: #6e7681"> </span>wappalyzer<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>urls.txt<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span>dns.disable<span style="color: #ff7b72; font-weight: bold">=</span><span style="color: #e6edf3">true</span>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># completely disable DNS resolution</span>
+bbot<span style="color: #6E7681"> </span>-m<span style="color: #6E7681"> </span>httpx<span style="color: #6E7681"> </span>gowitness<span style="color: #6E7681"> </span>wappalyzer<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>urls.txt<span style="color: #6E7681"> </span>-c<span style="color: #6E7681"> </span>dns.disable<span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #E6EDF3">true</span>
 </code></pre></div>
 <p>Note that the above setting <em>completely</em> disables DNS resolution, meaning even <code>A</code> and <code>AAAA</code> records are not resolved. This can cause problems if you're using an IP whitelist or blacklist. In this case, you'll want to use <code>dns.minimal</code> instead:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic"># only resolve A and AAAA records</span>
-bbot<span style="color: #6e7681"> </span>-m<span style="color: #6e7681"> </span>httpx<span style="color: #6e7681"> </span>gowitness<span style="color: #6e7681"> </span>wappalyzer<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>urls.txt<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span>dns.minimal<span style="color: #ff7b72; font-weight: bold">=</span><span style="color: #e6edf3">true</span>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># only resolve A and AAAA records</span>
+bbot<span style="color: #6E7681"> </span>-m<span style="color: #6E7681"> </span>httpx<span style="color: #6E7681"> </span>gowitness<span style="color: #6E7681"> </span>wappalyzer<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>urls.txt<span style="color: #6E7681"> </span>-c<span style="color: #6E7681"> </span>dns.minimal<span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #E6EDF3">true</span>
 </code></pre></div>
 <h2 id="faq">FAQ</h2>
 <h3 id="what-is-url_unverified">What is <code>URL_UNVERIFIED</code>?</h3>
 <p><code>URL_UNVERIFIED</code> events are URLs that haven't yet been visited by <code>httpx</code>. Once <code>httpx</code> visits them, it reraises them as <code>URL</code>s, tagged with their resulting status code.</p>
 <p>For example, when <a href="../#types-of-modules"><code>excavate</code></a> gets an <code>HTTP_RESPONSE</code> event, it extracts links from the raw HTTP response as <code>URL_UNVERIFIED</code>s and then passes them back to <code>httpx</code> to be visited.</p>
 <p>By default, <code>URL_UNVERIFIED</code>s are hidden from output. If you want to see all of them including the out-of-scope ones, you can do it by changing <code>omit_event_types</code> and <code>scope.report_distance</code> in the config like so:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic"># visit www.evilcorp.com and extract all the links</span>
-bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>www.evilcorp.com<span style="color: #6e7681"> </span>-m<span style="color: #6e7681"> </span>httpx<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span><span style="color: #79c0ff">omit_event_types</span><span style="color: #ff7b72; font-weight: bold">=[]</span><span style="color: #6e7681"> </span>scope.report_distance<span style="color: #ff7b72; font-weight: bold">=</span><span style="color: #a5d6ff">2</span>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># visit www.evilcorp.com and extract all the links</span>
+bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>www.evilcorp.com<span style="color: #6E7681"> </span>-m<span style="color: #6E7681"> </span>httpx<span style="color: #6E7681"> </span>-c<span style="color: #6E7681"> </span><span style="color: #79C0FF">omit_event_types</span><span style="color: #FF7B72; font-weight: bold">=[]</span><span style="color: #6E7681"> </span>scope.report_distance<span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #A5D6FF">2</span>
 </code></pre></div>
 </article>
 </div>

@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.jdy0f1lk.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.j_fuypct.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -631,218 +631,218 @@
 <p><code>bbot.yml</code> will be automatically created for you when you first run BBOT.</p>
 <h2 id="yaml-config-vs-command-line">YAML Config vs Command Line</h2>
 <p>You can specify config options either via the command line or the config. For example, if you want to proxy your BBOT scan through a local proxy like <a href="https://portswigger.net/burp">Burp Suite</a>, you could either do:</p>
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic"># send BBOT traffic through an HTTP proxy</span>
-bbot<span style="color: #6e7681"> </span>-t<span style="color: #6e7681"> </span>evilcorp.com<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span><span style="color: #79c0ff">http_proxy</span><span style="color: #ff7b72; font-weight: bold">=</span>http://127.0.0.1:8080
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic"># send BBOT traffic through an HTTP proxy</span>
+bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>evilcorp.com<span style="color: #6E7681"> </span>-c<span style="color: #6E7681"> </span><span style="color: #79C0FF">http_proxy</span><span style="color: #FF7B72; font-weight: bold">=</span>http://127.0.0.1:8080
 </code></pre></div>
 <p>Or, in <code>~/.config/bbot/config.yml</code>:</p>
-<div class="highlight" style="background: #0d1117"><span class="filename">~/.bbot/config/bbot.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7ee787">http_proxy</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">http://127.0.0.1:8080</span>
+<div class="highlight" style="background: #0d1117"><span class="filename">~/.bbot/config/bbot.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">http_proxy</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">http://127.0.0.1:8080</span>
 </code></pre></div>
 <p>These two are equivalent.</p>
 <p>Config options specified via the command-line take precedence over all others. You can give BBOT a custom config file with <code>-c myconf.yml</code>, or individual arguments like this: <code>-c modules.shodan_dns.api_key=deadbeef</code>. To display the full and current BBOT config, including any command-line arguments, use <code>bbot -c</code>.</p>
 <p>Note that placing the following in <code>bbot.yml</code>:
-<div class="highlight" style="background: #0d1117"><span class="filename">~/.bbot/config/bbot.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7ee787">modules</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">shodan_dns</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">    </span><span style="color: #7ee787">api_key</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">deadbeef</span>
+<div class="highlight" style="background: #0d1117"><span class="filename">~/.bbot/config/bbot.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #7EE787">modules</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">shodan_dns</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">    </span><span style="color: #7EE787">api_key</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">deadbeef</span>
 </code></pre></div>
 Is the same as:
-<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6e7681"> </span>-c<span style="color: #6e7681"> </span>modules.shodan_dns.api_key<span style="color: #ff7b72; font-weight: bold">=</span>deadbeef
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6E7681"> </span>-c<span style="color: #6E7681"> </span>modules.shodan_dns.api_key<span style="color: #FF7B72; font-weight: bold">=</span>deadbeef
 </code></pre></div></p>
 <h2 id="global-config-options">Global Config Options</h2>
 <p>Below is a full list of the config options supported, along with their defaults.</p>
 <!-- BBOT DEFAULT CONFIG -->
-<div class="highlight" style="background: #0d1117"><span class="filename">defaults.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #8b949e; font-style: italic">### BASIC OPTIONS ###</span>
+<div class="highlight" style="background: #0d1117"><span class="filename">defaults.yml</span><pre style="line-height: 125%;"><span></span><code><span style="color: #8B949E; font-style: italic">### BASIC OPTIONS ###</span>
 
-<span style="color: #8b949e; font-style: italic"># BBOT working directory</span>
-<span style="color: #7ee787">home</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">~/.bbot</span>
-<span style="color: #8b949e; font-style: italic"># How many scan results to keep before cleaning up the older ones</span>
-<span style="color: #7ee787">keep_scans</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">20</span>
-<span style="color: #8b949e; font-style: italic"># Interval for displaying status messages</span>
-<span style="color: #7ee787">status_frequency</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">15</span>
-<span style="color: #8b949e; font-style: italic"># Include the raw data of files (i.e. PDFs, web screenshots) as base64 in the event</span>
-<span style="color: #7ee787">file_blobs</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">false</span>
-<span style="color: #8b949e; font-style: italic"># Include the raw data of directories (i.e. git repos) as tar.gz base64 in the event</span>
-<span style="color: #7ee787">folder_blobs</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">false</span>
+<span style="color: #8B949E; font-style: italic"># BBOT working directory</span>
+<span style="color: #7EE787">home</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">~/.bbot</span>
+<span style="color: #8B949E; font-style: italic"># How many scan results to keep before cleaning up the older ones</span>
+<span style="color: #7EE787">keep_scans</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">20</span>
+<span style="color: #8B949E; font-style: italic"># Interval for displaying status messages</span>
+<span style="color: #7EE787">status_frequency</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">15</span>
+<span style="color: #8B949E; font-style: italic"># Include the raw data of files (i.e. PDFs, web screenshots) as base64 in the event</span>
+<span style="color: #7EE787">file_blobs</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">false</span>
+<span style="color: #8B949E; font-style: italic"># Include the raw data of directories (i.e. git repos) as tar.gz base64 in the event</span>
+<span style="color: #7EE787">folder_blobs</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">false</span>
 
-<span style="color: #8b949e; font-style: italic">### SCOPE ###</span>
+<span style="color: #8B949E; font-style: italic">### SCOPE ###</span>
 
-<span style="color: #7ee787">scope</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># strict scope means only exact DNS names are considered in-scope</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># subdomains are not included unless they are explicitly provided in the target list</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">strict</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">false</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># Filter by scope distance which events are displayed in the output</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># 0 == show only in-scope events (affiliates are always shown)</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># 1 == show all events up to distance-1 (1 hop from target)</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">report_distance</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">0</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># How far out from the main scope to search</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># Do not change this setting unless you know what you're doing</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">search_distance</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">0</span>
+<span style="color: #7EE787">scope</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># strict scope means only exact DNS names are considered in-scope</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># subdomains are not included unless they are explicitly provided in the target list</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">strict</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">false</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Filter by scope distance which events are displayed in the output</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># 0 == show only in-scope events (affiliates are always shown)</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># 1 == show all events up to distance-1 (1 hop from target)</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">report_distance</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">0</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># How far out from the main scope to search</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Do not change this setting unless you know what you're doing</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">search_distance</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">0</span>
 
-<span style="color: #8b949e; font-style: italic">### DNS ###</span>
+<span style="color: #8B949E; font-style: italic">### DNS ###</span>
 
-<span style="color: #7ee787">dns</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># Completely disable DNS resolution (careful if you have IP whitelists/blacklists, consider using minimal=true instead)</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">disable</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">false</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># Speed up scan by not creating any new DNS events, and only resolving A and AAAA records</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">minimal</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">false</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># How many instances of the dns module to run concurrently</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">threads</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">25</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># How many concurrent DNS resolvers to use when brute-forcing</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># (under the hood this is passed through directly to massdns -s)</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">brute_threads</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">1000</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># nameservers to use for DNS brute-forcing</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># default is updated weekly and contains ~10K high-quality public servers</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">brute_nameservers</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">https://raw.githubusercontent.com/blacklanternsecurity/public-dns-servers/master/nameservers.txt</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># How far away from the main target to explore via DNS resolution (independent of scope.search_distance)</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># This is safe to change</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">search_distance</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">1</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># Limit how many DNS records can be followed in a row (stop malicious/runaway DNS records)</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">runaway_limit</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">5</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># DNS query timeout</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">timeout</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">5</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># How many times to retry DNS queries</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">retries</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">1</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># Completely disable BBOT's DNS wildcard detection</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">wildcard_disable</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">False</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># Disable BBOT's DNS wildcard detection for select domains</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">wildcard_ignore</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">[]</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># How many sanity checks to make when verifying wildcard DNS</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># Increase this value if BBOT's wildcard detection isn't working</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">wildcard_tests</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">10</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># Skip DNS requests for a certain domain and rdtype after encountering this many timeouts or SERVFAILs</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># This helps prevent faulty DNS servers from hanging up the scan</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">abort_threshold</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">50</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># Don't show PTR records containing IP addresses</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">filter_ptrs</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">true</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># Enable/disable debug messages for DNS queries</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">debug</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">false</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># For performance reasons, always skip these DNS queries</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># Microsoft's DNS infrastructure is misconfigured so that certain queries to mail.protection.outlook.com always time out</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">omit_queries</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">    </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">SRV:mail.protection.outlook.com</span>
-<span style="color: #6e7681">    </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">CNAME:mail.protection.outlook.com</span>
-<span style="color: #6e7681">    </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">TXT:mail.protection.outlook.com</span>
+<span style="color: #7EE787">dns</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Completely disable DNS resolution (careful if you have IP whitelists/blacklists, consider using minimal=true instead)</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">disable</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">false</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Speed up scan by not creating any new DNS events, and only resolving A and AAAA records</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">minimal</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">false</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># How many instances of the dns module to run concurrently</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">threads</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">25</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># How many concurrent DNS resolvers to use when brute-forcing</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># (under the hood this is passed through directly to massdns -s)</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">brute_threads</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">1000</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># nameservers to use for DNS brute-forcing</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># default is updated weekly and contains ~10K high-quality public servers</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">brute_nameservers</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">https://raw.githubusercontent.com/blacklanternsecurity/public-dns-servers/master/nameservers.txt</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># How far away from the main target to explore via DNS resolution (independent of scope.search_distance)</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># This is safe to change</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">search_distance</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">1</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Limit how many DNS records can be followed in a row (stop malicious/runaway DNS records)</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">runaway_limit</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">5</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># DNS query timeout</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">timeout</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">5</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># How many times to retry DNS queries</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">retries</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">1</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Completely disable BBOT's DNS wildcard detection</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">wildcard_disable</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">False</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Disable BBOT's DNS wildcard detection for select domains</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">wildcard_ignore</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">[]</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># How many sanity checks to make when verifying wildcard DNS</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Increase this value if BBOT's wildcard detection isn't working</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">wildcard_tests</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">10</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Skip DNS requests for a certain domain and rdtype after encountering this many timeouts or SERVFAILs</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># This helps prevent faulty DNS servers from hanging up the scan</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">abort_threshold</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">50</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Don't show PTR records containing IP addresses</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">filter_ptrs</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">true</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Enable/disable debug messages for DNS queries</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">debug</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">false</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># For performance reasons, always skip these DNS queries</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Microsoft's DNS infrastructure is misconfigured so that certain queries to mail.protection.outlook.com always time out</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">omit_queries</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">    </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">SRV:mail.protection.outlook.com</span>
+<span style="color: #6E7681">    </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">CNAME:mail.protection.outlook.com</span>
+<span style="color: #6E7681">    </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">TXT:mail.protection.outlook.com</span>
 
-<span style="color: #8b949e; font-style: italic">### WEB ###</span>
+<span style="color: #8B949E; font-style: italic">### WEB ###</span>
 
-<span style="color: #7ee787">web</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># HTTP proxy</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">http_proxy</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># Web user-agent</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">user_agent</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.2151.97</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># Set the maximum number of HTTP links that can be followed in a row (0 == no spidering allowed)</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">spider_distance</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">0</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># Set the maximum directory depth for the web spider</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">spider_depth</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">1</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># Set the maximum number of links that can be followed per page</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">spider_links_per_page</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">25</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># HTTP timeout (for Python requests; API calls, etc.)</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">http_timeout</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">10</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># HTTP timeout (for httpx)</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">httpx_timeout</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">5</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># Custom HTTP headers (e.g. cookies, etc.)</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># in the format { "Header-Key": "header_value" }</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># These are attached to all in-scope HTTP requests</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># Note that some modules (e.g. github) may end up sending these to out-of-scope resources</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">http_headers</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">{}</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># HTTP retries (for Python requests; API calls, etc.)</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">http_retries</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">1</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># HTTP retries (for httpx)</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">httpx_retries</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">1</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># Enable/disable debug messages for web requests/responses</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">debug</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">false</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># Maximum number of HTTP redirects to follow</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">http_max_redirects</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">5</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># Whether to verify SSL certificates</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">ssl_verify</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">false</span>
+<span style="color: #7EE787">web</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># HTTP proxy</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">http_proxy</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Web user-agent</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">user_agent</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.2151.97</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Set the maximum number of HTTP links that can be followed in a row (0 == no spidering allowed)</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">spider_distance</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">0</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Set the maximum directory depth for the web spider</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">spider_depth</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">1</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Set the maximum number of links that can be followed per page</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">spider_links_per_page</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">25</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># HTTP timeout (for Python requests; API calls, etc.)</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">http_timeout</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">10</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># HTTP timeout (for httpx)</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">httpx_timeout</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">5</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Custom HTTP headers (e.g. cookies, etc.)</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># in the format { "Header-Key": "header_value" }</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># These are attached to all in-scope HTTP requests</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Note that some modules (e.g. github) may end up sending these to out-of-scope resources</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">http_headers</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">{}</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># HTTP retries (for Python requests; API calls, etc.)</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">http_retries</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">1</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># HTTP retries (for httpx)</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">httpx_retries</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">1</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Enable/disable debug messages for web requests/responses</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">debug</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">false</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Maximum number of HTTP redirects to follow</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">http_max_redirects</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">5</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Whether to verify SSL certificates</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">ssl_verify</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">false</span>
 
-<span style="color: #8b949e; font-style: italic">### ENGINE ###</span>
+<span style="color: #8B949E; font-style: italic">### ENGINE ###</span>
 
-<span style="color: #7ee787">engine</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">debug</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">false</span>
+<span style="color: #7EE787">engine</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">debug</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">false</span>
 
-<span style="color: #8b949e; font-style: italic"># Tool dependencies</span>
-<span style="color: #7ee787">deps</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">ffuf</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">    </span><span style="color: #7ee787">version</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">"2.1.0"</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># How to handle installation of module dependencies</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># Choices are:</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic">#  - abort_on_failure (default) - if a module dependency fails to install, abort the scan</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic">#  - retry_failed - try again to install failed dependencies</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic">#  - ignore_failed - run the scan regardless of what happens with dependency installation</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic">#  - disable - completely disable BBOT's dependency system (you are responsible for installing tools, pip packages, etc.)</span>
-<span style="color: #6e7681">  </span><span style="color: #7ee787">behavior</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">abort_on_failure</span>
+<span style="color: #8B949E; font-style: italic"># Tool dependencies</span>
+<span style="color: #7EE787">deps</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">ffuf</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">    </span><span style="color: #7EE787">version</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">"2.1.0"</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># How to handle installation of module dependencies</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># Choices are:</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic">#  - abort_on_failure (default) - if a module dependency fails to install, abort the scan</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic">#  - retry_failed - try again to install failed dependencies</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic">#  - ignore_failed - run the scan regardless of what happens with dependency installation</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic">#  - disable - completely disable BBOT's dependency system (you are responsible for installing tools, pip packages, etc.)</span>
+<span style="color: #6E7681">  </span><span style="color: #7EE787">behavior</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">abort_on_failure</span>
 
-<span style="color: #8b949e; font-style: italic">### ADVANCED OPTIONS ###</span>
+<span style="color: #8B949E; font-style: italic">### ADVANCED OPTIONS ###</span>
 
-<span style="color: #8b949e; font-style: italic"># Load BBOT modules from these custom paths</span>
-<span style="color: #7ee787">module_dirs</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #e6edf3">[]</span>
+<span style="color: #8B949E; font-style: italic"># Load BBOT modules from these custom paths</span>
+<span style="color: #7EE787">module_dirs</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #E6EDF3">[]</span>
 
-<span style="color: #8b949e; font-style: italic"># Infer certain events from others, e.g. IPs from IP ranges, DNS_NAMEs from URLs, etc.</span>
-<span style="color: #7ee787">speculate</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">True</span>
-<span style="color: #8b949e; font-style: italic"># Passively search event data for URLs, hostnames, emails, etc.</span>
-<span style="color: #7ee787">excavate</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">True</span>
-<span style="color: #8b949e; font-style: italic"># Summarize activity at the end of a scan</span>
-<span style="color: #7ee787">aggregate</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">True</span>
-<span style="color: #8b949e; font-style: italic"># DNS resolution, wildcard detection, etc.</span>
-<span style="color: #7ee787">dnsresolve</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">True</span>
-<span style="color: #8b949e; font-style: italic"># Cloud provider tagging</span>
-<span style="color: #7ee787">cloudcheck</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">True</span>
+<span style="color: #8B949E; font-style: italic"># Infer certain events from others, e.g. IPs from IP ranges, DNS_NAMEs from URLs, etc.</span>
+<span style="color: #7EE787">speculate</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">True</span>
+<span style="color: #8B949E; font-style: italic"># Passively search event data for URLs, hostnames, emails, etc.</span>
+<span style="color: #7EE787">excavate</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">True</span>
+<span style="color: #8B949E; font-style: italic"># Summarize activity at the end of a scan</span>
+<span style="color: #7EE787">aggregate</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">True</span>
+<span style="color: #8B949E; font-style: italic"># DNS resolution, wildcard detection, etc.</span>
+<span style="color: #7EE787">dnsresolve</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">True</span>
+<span style="color: #8B949E; font-style: italic"># Cloud provider tagging</span>
+<span style="color: #7EE787">cloudcheck</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">True</span>
 
-<span style="color: #8b949e; font-style: italic"># Strip querystring from URLs by default</span>
-<span style="color: #7ee787">url_querystring_remove</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">True</span>
-<span style="color: #8b949e; font-style: italic"># When query string is retained, by default collapse parameter values down to a single value per parameter</span>
-<span style="color: #7ee787">url_querystring_collapse</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">True</span>
+<span style="color: #8B949E; font-style: italic"># Strip querystring from URLs by default</span>
+<span style="color: #7EE787">url_querystring_remove</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">True</span>
+<span style="color: #8B949E; font-style: italic"># When query string is retained, by default collapse parameter values down to a single value per parameter</span>
+<span style="color: #7EE787">url_querystring_collapse</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">True</span>
 
-<span style="color: #8b949e; font-style: italic"># Completely ignore URLs with these extensions</span>
-<span style="color: #7ee787">url_extension_blacklist</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># images</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">png</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">jpg</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">bmp</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">ico</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">jpeg</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">gif</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">svg</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">webp</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># web/fonts</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">css</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">woff</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">woff2</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">ttf</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">eot</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">sass</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">scss</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># audio</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">mp3</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">m4a</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">wav</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">flac</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># video</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">mp4</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">mkv</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">avi</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">wmv</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">mov</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">flv</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">webm</span>
-<span style="color: #8b949e; font-style: italic"># Distribute URLs with these extensions only to httpx (these are omitted from output)</span>
-<span style="color: #7ee787">url_extension_httpx_only</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">js</span>
-<span style="color: #8b949e; font-style: italic"># Don't output these types of events (they are still distributed to modules)</span>
-<span style="color: #7ee787">omit_event_types</span><span style="color: #e6edf3">:</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">HTTP_RESPONSE</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">RAW_TEXT</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">URL_UNVERIFIED</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">DNS_NAME_UNRESOLVED</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">FILESYSTEM</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">WEB_PARAMETER</span>
-<span style="color: #6e7681">  </span><span style="color: #e6edf3">-</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">RAW_DNS_RECORD</span>
-<span style="color: #6e7681">  </span><span style="color: #8b949e; font-style: italic"># - IP_ADDRESS</span>
+<span style="color: #8B949E; font-style: italic"># Completely ignore URLs with these extensions</span>
+<span style="color: #7EE787">url_extension_blacklist</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># images</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">png</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">jpg</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">bmp</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">ico</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">jpeg</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">gif</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">svg</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">webp</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># web/fonts</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">css</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">woff</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">woff2</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">ttf</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">eot</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">sass</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">scss</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># audio</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">mp3</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">m4a</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">wav</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">flac</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># video</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">mp4</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">mkv</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">avi</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">wmv</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">mov</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">flv</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">webm</span>
+<span style="color: #8B949E; font-style: italic"># Distribute URLs with these extensions only to httpx (these are omitted from output)</span>
+<span style="color: #7EE787">url_extension_httpx_only</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">js</span>
+<span style="color: #8B949E; font-style: italic"># Don't output these types of events (they are still distributed to modules)</span>
+<span style="color: #7EE787">omit_event_types</span><span style="color: #E6EDF3">:</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">HTTP_RESPONSE</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">RAW_TEXT</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">URL_UNVERIFIED</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">DNS_NAME_UNRESOLVED</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">FILESYSTEM</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">WEB_PARAMETER</span>
+<span style="color: #6E7681">  </span><span style="color: #E6EDF3">-</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">RAW_DNS_RECORD</span>
+<span style="color: #6E7681">  </span><span style="color: #8B949E; font-style: italic"># - IP_ADDRESS</span>
 
-<span style="color: #8b949e; font-style: italic"># Custom interactsh server settings</span>
-<span style="color: #7ee787">interactsh_server</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">null</span>
-<span style="color: #7ee787">interactsh_token</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">null</span>
-<span style="color: #7ee787">interactsh_disable</span><span style="color: #e6edf3">:</span><span style="color: #6e7681"> </span><span style="color: #a5d6ff">false</span>
+<span style="color: #8B949E; font-style: italic"># Custom interactsh server settings</span>
+<span style="color: #7EE787">interactsh_server</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">null</span>
+<span style="color: #7EE787">interactsh_token</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">null</span>
+<span style="color: #7EE787">interactsh_disable</span><span style="color: #E6EDF3">:</span><span style="color: #6E7681"> </span><span style="color: #A5D6FF">false</span>
 </code></pre></div>
 <!-- END BBOT DEFAULT CONFIG -->
 <h2 id="module-config-options">Module Config Options</h2>
