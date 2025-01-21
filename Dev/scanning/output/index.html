@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.2jh87cj3.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.8w49yw_k.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -394,6 +394,13 @@
 <a class="md-nav__link" href="#cypher-queries-and-tips">
 <span class="md-ellipsis">
       Cypher Queries and Tips
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#web_parameters">
+<span class="md-ellipsis">
+      Web_parameters
     </span>
 </a>
 </li>
@@ -1045,6 +1052,11 @@ docker<span style="color: #6E7681"> </span>run<span style="color: #6E7681"> </sp
 </code></pre></div>
 <p>This is not an exhaustive list of clauses, filters, or other means to use cypher and should be considered a starting point. To build more advanced queries consider reading Neo4j's Cypher <a href="https://neo4j.com/docs/cypher-manual/current/introduction/">documentation</a>.</p>
 <p>Additional note: these sample queries are dependent on the existence of the data in the target neo4j database.</p>
+<h3 id="web_parameters">Web_parameters</h3>
+<p>The <code>web_parameters</code> output module will utilize BBOT web parameter extraction capabilities, and output the resulting parameters to a file (web_parameters.txt, by default). Web parameter extraction is disabled by default, but will automatically be enabled when a module is included that consumes WEB_PARAMETER events (including the <code>web_parameters</code> output module itself).</p>
+<p>This can be useful for those who want to discover new common web parameters or those which may be associated with a specific target or organization. This could be very useful for further parameter bruteforcing, or even fed back into bbot via the paramminer modules. For example:</p>
+<div class="highlight" style="background: #0d1117"><pre style="line-height: 125%;"><span></span><code>bbot<span style="color: #6E7681"> </span>-t<span style="color: #6E7681"> </span>evilcorp.com<span style="color: #6E7681"> </span>-m<span style="color: #6E7681"> </span>paramminer_getparams<span style="color: #6E7681"> </span>-c<span style="color: #6E7681"> </span>modules.paramminer_getparams.wordlist<span style="color: #FF7B72; font-weight: bold">=</span>/path/to/your/new/wordlist.txt
+</code></pre></div>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
