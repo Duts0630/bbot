@@ -79,13 +79,23 @@ DEP_CHROMIUM = [
         "ignore_errors": True,
     },
     {
-        "name": "Install Chromium dependencies (Debian)",
+        "name": "Install Chromium dependencies (Ubuntu 24.04)",
+        "package": {
+            "name": "libasound2t64,libatk-bridge2.0-0,libatk1.0-0,libcairo2,libcups2,libdrm2,libgbm1,libnss3,libpango-1.0-0,libglib2.0-0,libxcomposite1,libxdamage1,libxfixes3,libxkbcommon0,libxrandr2",
+            "state": "present",
+        },
+        "become": True,
+        "when": "ansible_facts['distribution'] == 'Ubuntu' and ansible_facts['distribution_version'] == '24.04'",
+        "ignore_errors": True,
+    },
+    {
+        "name": "Install Chromium dependencies (Other Debian-based)",
         "package": {
             "name": "libasound2,libatk-bridge2.0-0,libatk1.0-0,libcairo2,libcups2,libdrm2,libgbm1,libnss3,libpango-1.0-0,libglib2.0-0,libxcomposite1,libxdamage1,libxfixes3,libxkbcommon0,libxrandr2",
             "state": "present",
         },
         "become": True,
-        "when": "ansible_facts['os_family'] == 'Debian'",
+        "when": "ansible_facts['os_family'] == 'Debian' and not (ansible_facts['distribution'] == 'Ubuntu' and ansible_facts['distribution_version'] == '24.04')",
         "ignore_errors": True,
     },
     {
@@ -108,6 +118,20 @@ DEP_CHROMIUM = [
         },
         "when": "ansible_facts['os_family'] == 'Debian'",
         "ignore_errors": True,
+    },
+    # Because Ubuntu is a special snowflake, we have to bend over backwards to fix the chrome sandbox
+    # see https://chromium.googlesource.com/chromium/src/+/main/docs/security/apparmor-userns-restrictions.md
+    {
+        "name": "Chown chrome_sandbox to root:root",
+        "command": {"cmd": "chown -R root:root #{BBOT_TOOLS}/chrome-linux/chrome_sandbox"},
+        "when": "ansible_facts['os_family'] == 'Debian'",
+        "become": True,
+    },
+    {
+        "name": "Chmod chrome_sandbox to 4755",
+        "command": {"cmd": "chmod -R 4755 #{BBOT_TOOLS}/chrome-linux/chrome_sandbox"},
+        "when": "ansible_facts['os_family'] == 'Debian'",
+        "become": True,
     },
 ]
 
@@ -146,6 +170,39 @@ DEP_MASSCAN = [
     {
         "name": "Install masscan",
         "copy": {"src": "#{BBOT_TEMP}/masscan/bin/masscan", "dest": "#{BBOT_TOOLS}/", "mode": "u+x,g+x,o+x"},
+    },
+]
+
+DEP_JAVA = [
+    {
+        "name": "Check if Java is installed",
+        "command": "which java",
+        "register": "java_installed",
+        "ignore_errors": True,
+    },
+    {
+        "name": "Install latest JRE (Debian)",
+        "package": {"name": ["default-jre"], "state": "present"},
+        "become": True,
+        "when": "ansible_facts['os_family'] == 'Debian' and java_installed.rc != 0",
+    },
+    {
+        "name": "Install latest JRE (Arch)",
+        "package": {"name": ["jre-openjdk"], "state": "present"},
+        "become": True,
+        "when": "ansible_facts['os_family'] == 'Archlinux' and java_installed.rc != 0",
+    },
+    {
+        "name": "Install latest JRE (Fedora)",
+        "package": {"name": ["which", "java-latest-openjdk-headless"], "state": "present"},
+        "become": True,
+        "when": "ansible_facts['os_family'] == 'RedHat' and java_installed.rc != 0",
+    },
+    {
+        "name": "Install latest JRE (Alpine)",
+        "package": {"name": ["openjdk11"], "state": "present"},
+        "become": True,
+        "when": "ansible_facts['os_family'] == 'Alpine' and java_installed.rc != 0",
     },
 ]
 

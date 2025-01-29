@@ -28,6 +28,7 @@ class extractous(BaseModule):
             "ica",  #  Citrix Independent Computing Architecture File
             "indd",  #  Adobe InDesign Document
             "ini",  #  Initialization File
+            "json",  #  JSON File
             "key",  #  Private Key File
             "pub",  #  Public Key File
             "log",  #  Log File
@@ -45,6 +46,7 @@ class extractous(BaseModule):
             "pptx",  #  Microsoft PowerPoint Presentation
             "ps1",  #  PowerShell Script
             "rdp",  #  Remote Desktop Protocol File
+            "rsa",  #  RSA Private Key File
             "sh",  #  Shell Script
             "sql",  #  SQL Database Dump
             "swp",  #  Swap File (temporary file, often Vim)
@@ -63,11 +65,11 @@ class extractous(BaseModule):
         "extensions": "File extensions to parse",
     }
 
-    deps_pip = ["extractous"]
+    deps_pip = ["extractous~=0.3.0"]
     scope_distance_modifier = 1
 
     async def setup(self):
-        self.extensions = list(set([e.lower().strip(".") for e in self.config.get("extensions", [])]))
+        self.extensions = list({e.lower().strip(".") for e in self.config.get("extensions", [])})
         return True
 
     async def filter_event(self, event):
@@ -81,6 +83,12 @@ class extractous(BaseModule):
     async def handle_event(self, event):
         file_path = event.data["path"]
         content = await self.scan.helpers.run_in_executor_mp(extract_text, file_path)
+        if isinstance(content, tuple):
+            error, traceback = content
+            self.error(f"Error extracting text from {file_path}: {error}")
+            self.trace(traceback)
+            return
+
         if content:
             raw_text_event = self.make_event(
                 content,
@@ -99,49 +107,18 @@ def extract_text(file_path):
     :return: ASCII-encoded plaintext extracted from the document.
     """
 
-    extractable_file_types = [
-        ".csv",
-        ".eml",
-        ".msg",
-        ".epub",
-        ".xlsx",
-        ".xls",
-        ".html",
-        ".htm",
-        ".md",
-        ".org",
-        ".odt",
-        ".pdf",
-        ".txt",
-        ".text",
-        ".log",
-        ".ppt",
-        ".pptx",
-        ".rst",
-        ".rtf",
-        ".tsv",
-        ".doc",
-        ".docx",
-        ".xml",
-    ]
+    try:
+        extractor = Extractor()
+        reader, metadata = extractor.extract_file(str(file_path))
 
-    # If the file can be extracted with extractous use its partition function or try and read it
-    if any(file_path.lower().endswith(file_type) for file_type in extractable_file_types):
-        try:
-            extractor = Extractor()
-            reader = extractor.extract_file(str(file_path))
-
-            result = ""
+        result = ""
+        buffer = reader.read(4096)
+        while len(buffer) > 0:
+            result += buffer.decode("utf-8", errors="ignore")
             buffer = reader.read(4096)
-            while len(buffer) > 0:
-                result += buffer.decode("utf-8")
-                buffer = reader.read(4096)
 
-            return result.strip()
+        return result.strip()
+    except Exception as e:
+        import traceback
 
-        except Exception:
-            with open(file_path, "rb") as file:
-                return file.read().decode("utf-8", errors="ignore")
-    else:
-        with open(file_path, "rb") as file:
-            return file.read().decode("utf-8", errors="ignore")
+        return (str(e), traceback.format_exc())
