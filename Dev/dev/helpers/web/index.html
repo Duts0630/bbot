@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../../assets/stylesheets/extra-style.ckeni_g2.min.css" rel="stylesheet"/></head>
+<link href="../../../assets/stylesheets/extra-style.sfgaqc9m.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -1130,7 +1130,8 @@
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">515</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">516</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">517</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">518</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #FF7B72">class</span><span style="color: #6E7681"> </span><span style="color: #F0883E; font-weight: bold">WebHelper</span><span style="color: #E6EDF3">(EngineClient):</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">518</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">519</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #FF7B72">class</span><span style="color: #6E7681"> </span><span style="color: #F0883E; font-weight: bold">WebHelper</span><span style="color: #E6EDF3">(EngineClient):</span>
     <span style="color: #E6EDF3">SERVER_CLASS</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">HTTPEngine</span>
     <span style="color: #E6EDF3">ERROR_CLASS</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">WebError</span>
 
@@ -1448,6 +1449,7 @@
         <span style="color: #E6EDF3">ignore_bbot_global_settings</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">kwargs</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">get(</span><span style="color: #A5D6FF">"ignore_bbot_global_settings"</span><span style="color: #E6EDF3">,</span> <span style="color: #79C0FF">False</span><span style="color: #E6EDF3">)</span>
 
         <span style="color: #FF7B72">if</span> <span style="color: #E6EDF3">ignore_bbot_global_settings:</span>
+            <span style="color: #E6EDF3">http_timeout</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #A5D6FF">20</span>  <span style="color: #8B949E; font-style: italic"># setting 20 as a worse-case setting</span>
             <span style="color: #E6EDF3">log</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">debug(</span><span style="color: #A5D6FF">"ignore_bbot_global_settings enabled. Global settings will not be applied"</span><span style="color: #E6EDF3">)</span>
         <span style="color: #FF7B72">else</span><span style="color: #E6EDF3">:</span>
             <span style="color: #E6EDF3">http_timeout</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">parent_helper</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">web_config</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">get(</span><span style="color: #A5D6FF">"http_timeout"</span><span style="color: #E6EDF3">,</span> <span style="color: #A5D6FF">20</span><span style="color: #E6EDF3">)</span>
@@ -1461,12 +1463,12 @@
                 <span style="color: #FF7B72">for</span> <span style="color: #E6EDF3">hk,</span> <span style="color: #E6EDF3">hv</span> <span style="color: #FF7B72; font-weight: bold">in</span> <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">web_config</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">get(</span><span style="color: #A5D6FF">"http_headers"</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">{})</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">items():</span>
                     <span style="color: #E6EDF3">headers[hk]</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">hv</span>
 
-            <span style="color: #8B949E; font-style: italic"># add the timeout</span>
-            <span style="color: #FF7B72">if</span> <span style="color: #A5D6FF">"timeout"</span> <span style="color: #FF7B72; font-weight: bold">not</span> <span style="color: #FF7B72; font-weight: bold">in</span> <span style="color: #E6EDF3">kwargs:</span>
-                <span style="color: #E6EDF3">timeout</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">http_timeout</span>
+        <span style="color: #8B949E; font-style: italic"># add the timeout</span>
+        <span style="color: #FF7B72">if</span> <span style="color: #A5D6FF">"timeout"</span> <span style="color: #FF7B72; font-weight: bold">not</span> <span style="color: #FF7B72; font-weight: bold">in</span> <span style="color: #E6EDF3">kwargs:</span>
+            <span style="color: #E6EDF3">timeout</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">http_timeout</span>
 
-            <span style="color: #E6EDF3">curl_command</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">append(</span><span style="color: #A5D6FF">"-m"</span><span style="color: #E6EDF3">)</span>
-            <span style="color: #E6EDF3">curl_command</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">append(str(timeout))</span>
+        <span style="color: #E6EDF3">curl_command</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">append(</span><span style="color: #A5D6FF">"-m"</span><span style="color: #E6EDF3">)</span>
+        <span style="color: #E6EDF3">curl_command</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">append(str(timeout))</span>
 
         <span style="color: #FF7B72">for</span> <span style="color: #E6EDF3">k,</span> <span style="color: #E6EDF3">v</span> <span style="color: #FF7B72; font-weight: bold">in</span> <span style="color: #E6EDF3">headers</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">items():</span>
             <span style="color: #FF7B72">if</span> <span style="color: #E6EDF3">isinstance(v,</span> <span style="color: #E6EDF3">list):</span>
@@ -1512,7 +1514,7 @@
         <span style="color: #FF7B72">if</span> <span style="color: #E6EDF3">raw_body:</span>
             <span style="color: #E6EDF3">curl_command</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">append(</span><span style="color: #A5D6FF">"-d"</span><span style="color: #E6EDF3">)</span>
             <span style="color: #E6EDF3">curl_command</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">append(raw_body)</span>
-
+        <span style="color: #E6EDF3">log</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">verbose(</span><span style="color: #79C0FF">f</span><span style="color: #A5D6FF">"Running curl command: {</span><span style="color: #E6EDF3">curl_command</span><span style="color: #A5D6FF">}"</span><span style="color: #E6EDF3">)</span>
         <span style="color: #E6EDF3">output</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">(</span><span style="color: #FF7B72">await</span> <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">parent_helper</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">run(curl_command))</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">stdout</span>
         <span style="color: #FF7B72">return</span> <span style="color: #E6EDF3">output</span>
 
@@ -1778,8 +1780,7 @@ document to be parsed.</p>
 </code></pre></div>
 <details class="quote">
 <summary>Source code in <code>bbot/core/helpers/web/web.py</code></summary>
-<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">407</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">408</span>
+<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">408</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">409</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">410</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">411</span>
@@ -1834,7 +1835,8 @@ document to be parsed.</p>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">460</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">461</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">462</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">463</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #FF7B72">def</span><span style="color: #6E7681"> </span><span style="color: #D2A8FF; font-weight: bold">beautifulsoup</span><span style="color: #E6EDF3">(</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">463</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">464</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #FF7B72">def</span><span style="color: #6E7681"> </span><span style="color: #D2A8FF; font-weight: bold">beautifulsoup</span><span style="color: #E6EDF3">(</span>
     <span style="color: #E6EDF3">self,</span>
     <span style="color: #E6EDF3">markup,</span>
     <span style="color: #E6EDF3">features</span><span style="color: #FF7B72; font-weight: bold">=</span><span style="color: #A5D6FF">"html.parser"</span><span style="color: #E6EDF3">,</span>
@@ -2147,7 +2149,8 @@ It offers support for various cURL options such as headers, post data, and cooki
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">402</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">403</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">404</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">405</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #FF7B72">async</span> <span style="color: #FF7B72">def</span><span style="color: #6E7681"> </span><span style="color: #D2A8FF; font-weight: bold">curl</span><span style="color: #E6EDF3">(self,</span> <span style="color: #FF7B72; font-weight: bold">*</span><span style="color: #E6EDF3">args,</span> <span style="color: #FF7B72; font-weight: bold">**</span><span style="color: #E6EDF3">kwargs):</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">405</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">406</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #FF7B72">async</span> <span style="color: #FF7B72">def</span><span style="color: #6E7681"> </span><span style="color: #D2A8FF; font-weight: bold">curl</span><span style="color: #E6EDF3">(self,</span> <span style="color: #FF7B72; font-weight: bold">*</span><span style="color: #E6EDF3">args,</span> <span style="color: #FF7B72; font-weight: bold">**</span><span style="color: #E6EDF3">kwargs):</span>
 <span style="color: #6E7681">    </span><span style="color: #A5D6FF">"""</span>
 <span style="color: #A5D6FF">    An asynchronous function that runs a cURL command with specified arguments and options.</span>
 
@@ -2198,6 +2201,7 @@ It offers support for various cURL options such as headers, post data, and cooki
     <span style="color: #E6EDF3">ignore_bbot_global_settings</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">kwargs</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">get(</span><span style="color: #A5D6FF">"ignore_bbot_global_settings"</span><span style="color: #E6EDF3">,</span> <span style="color: #79C0FF">False</span><span style="color: #E6EDF3">)</span>
 
     <span style="color: #FF7B72">if</span> <span style="color: #E6EDF3">ignore_bbot_global_settings:</span>
+        <span style="color: #E6EDF3">http_timeout</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #A5D6FF">20</span>  <span style="color: #8B949E; font-style: italic"># setting 20 as a worse-case setting</span>
         <span style="color: #E6EDF3">log</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">debug(</span><span style="color: #A5D6FF">"ignore_bbot_global_settings enabled. Global settings will not be applied"</span><span style="color: #E6EDF3">)</span>
     <span style="color: #FF7B72">else</span><span style="color: #E6EDF3">:</span>
         <span style="color: #E6EDF3">http_timeout</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">parent_helper</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">web_config</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">get(</span><span style="color: #A5D6FF">"http_timeout"</span><span style="color: #E6EDF3">,</span> <span style="color: #A5D6FF">20</span><span style="color: #E6EDF3">)</span>
@@ -2211,12 +2215,12 @@ It offers support for various cURL options such as headers, post data, and cooki
             <span style="color: #FF7B72">for</span> <span style="color: #E6EDF3">hk,</span> <span style="color: #E6EDF3">hv</span> <span style="color: #FF7B72; font-weight: bold">in</span> <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">web_config</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">get(</span><span style="color: #A5D6FF">"http_headers"</span><span style="color: #E6EDF3">,</span> <span style="color: #E6EDF3">{})</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">items():</span>
                 <span style="color: #E6EDF3">headers[hk]</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">hv</span>
 
-        <span style="color: #8B949E; font-style: italic"># add the timeout</span>
-        <span style="color: #FF7B72">if</span> <span style="color: #A5D6FF">"timeout"</span> <span style="color: #FF7B72; font-weight: bold">not</span> <span style="color: #FF7B72; font-weight: bold">in</span> <span style="color: #E6EDF3">kwargs:</span>
-            <span style="color: #E6EDF3">timeout</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">http_timeout</span>
+    <span style="color: #8B949E; font-style: italic"># add the timeout</span>
+    <span style="color: #FF7B72">if</span> <span style="color: #A5D6FF">"timeout"</span> <span style="color: #FF7B72; font-weight: bold">not</span> <span style="color: #FF7B72; font-weight: bold">in</span> <span style="color: #E6EDF3">kwargs:</span>
+        <span style="color: #E6EDF3">timeout</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">http_timeout</span>
 
-        <span style="color: #E6EDF3">curl_command</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">append(</span><span style="color: #A5D6FF">"-m"</span><span style="color: #E6EDF3">)</span>
-        <span style="color: #E6EDF3">curl_command</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">append(str(timeout))</span>
+    <span style="color: #E6EDF3">curl_command</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">append(</span><span style="color: #A5D6FF">"-m"</span><span style="color: #E6EDF3">)</span>
+    <span style="color: #E6EDF3">curl_command</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">append(str(timeout))</span>
 
     <span style="color: #FF7B72">for</span> <span style="color: #E6EDF3">k,</span> <span style="color: #E6EDF3">v</span> <span style="color: #FF7B72; font-weight: bold">in</span> <span style="color: #E6EDF3">headers</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">items():</span>
         <span style="color: #FF7B72">if</span> <span style="color: #E6EDF3">isinstance(v,</span> <span style="color: #E6EDF3">list):</span>
@@ -2262,7 +2266,7 @@ It offers support for various cURL options such as headers, post data, and cooki
     <span style="color: #FF7B72">if</span> <span style="color: #E6EDF3">raw_body:</span>
         <span style="color: #E6EDF3">curl_command</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">append(</span><span style="color: #A5D6FF">"-d"</span><span style="color: #E6EDF3">)</span>
         <span style="color: #E6EDF3">curl_command</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">append(raw_body)</span>
-
+    <span style="color: #E6EDF3">log</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">verbose(</span><span style="color: #79C0FF">f</span><span style="color: #A5D6FF">"Running curl command: {</span><span style="color: #E6EDF3">curl_command</span><span style="color: #A5D6FF">}"</span><span style="color: #E6EDF3">)</span>
     <span style="color: #E6EDF3">output</span> <span style="color: #FF7B72; font-weight: bold">=</span> <span style="color: #E6EDF3">(</span><span style="color: #FF7B72">await</span> <span style="color: #E6EDF3">self</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">parent_helper</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">run(curl_command))</span><span style="color: #FF7B72; font-weight: bold">.</span><span style="color: #E6EDF3">stdout</span>
     <span style="color: #FF7B72">return</span> <span style="color: #E6EDF3">output</span>
 </code></pre></div></td></tr></table></div>
@@ -2958,8 +2962,7 @@ help correlate requests, etc.</p>
 <p>Convert web response to JSON object, similar to the output of <code>httpx -irr -json</code></p>
 <details class="quote">
 <summary>Source code in <code>bbot/core/helpers/web/web.py</code></summary>
-<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">465</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">466</span>
+<div class="highlight" style="background: #0d1117"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">466</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">467</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">468</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">469</span>
@@ -3011,7 +3014,8 @@ help correlate requests, etc.</p>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">515</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">516</span>
 <span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">517</span>
-<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">518</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #FF7B72">def</span><span style="color: #6E7681"> </span><span style="color: #D2A8FF; font-weight: bold">response_to_json</span><span style="color: #E6EDF3">(self,</span> <span style="color: #E6EDF3">response):</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">518</span>
+<span style="color: #6e7681; background-color: #0d1117; padding-left: 5px; padding-right: 5px;">519</span></pre></div></td><td class="code"><div><pre style="line-height: 125%;"><span></span><code><span style="color: #FF7B72">def</span><span style="color: #6E7681"> </span><span style="color: #D2A8FF; font-weight: bold">response_to_json</span><span style="color: #E6EDF3">(self,</span> <span style="color: #E6EDF3">response):</span>
 <span style="color: #6E7681">    </span><span style="color: #A5D6FF">"""</span>
 <span style="color: #A5D6FF">    Convert web response to JSON object, similar to the output of `httpx -irr -json`</span>
 <span style="color: #A5D6FF">    """</span>
