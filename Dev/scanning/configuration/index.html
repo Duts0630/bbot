@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.tvusz177.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style.wgdajnwy.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -1070,6 +1070,12 @@ Is the same as:
 <td>0</td>
 </tr>
 <tr>
+<td>modules.ffuf.rate</td>
+<td>int</td>
+<td>Rate of requests per second (default: 0)</td>
+<td>0</td>
+</tr>
+<tr>
 <td>modules.ffuf.wordlist</td>
 <td>str</td>
 <td>Specify wordlist to use when finding directories</td>
@@ -1116,6 +1122,12 @@ Is the same as:
 <td>int</td>
 <td>The maximum number of predictions to generate per shortname prefix</td>
 <td>250</td>
+</tr>
+<tr>
+<td>modules.ffuf_shortnames.rate</td>
+<td>int</td>
+<td>Rate of requests per second (default: 0)</td>
+<td>0</td>
 </tr>
 <tr>
 <td>modules.ffuf_shortnames.version</td>
@@ -1890,12 +1902,6 @@ Is the same as:
 <td>str</td>
 <td>Hunter.IO API key</td>
 <td></td>
-</tr>
-<tr>
-<td>modules.internetdb.show_open_ports</td>
-<td>bool</td>
-<td>Display OPEN_TCP_PORT events in output, even if they didn't lead to an interesting discovery</td>
-<td>False</td>
 </tr>
 <tr>
 <td>modules.ip2location.api_key</td>
