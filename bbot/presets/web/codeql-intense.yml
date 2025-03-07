@@ -1,0 +1,11 @@
+description: Discover client-side web vulnerabilities using CodeQL. Limit to "error" and "warning" level findings, and include out of scope JS files.
+
+
+include:
+  - codeql
+
+config:
+  modules:
+    codeql:
+      min_severity: "warning"
+      include_out_of_scope: True
