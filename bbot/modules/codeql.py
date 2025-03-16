@@ -146,15 +146,15 @@ class codeql(BaseModule):
     _module_threads = 2
 
     yara_rules = r"""
-    rule sourcevarassign {
+    rule source_decode {
         meta:
-            name = "Source to Variable Assignment"
-            description = "Variable assignment tainted by user input source"
+            name = "Source Decoded with decodeURIComponent()"
+            description = "URL-decoded user-controlled data from a source can facilitate XSS attacks"
             confidence = "possible"
         strings:
-            $varassign = /var\s+[^=]+=[^;]*(location\.(href|hash|pathname|search)|document\.(URL|documentURI|baseURI))[^;\n]*(;|\n|$)/ nocase
+            $source_decode = /decodeURIComponent\s*\(\s*[^)]+(location\.(href|hash|pathname|search)|document\.(URL|documentURI|baseURI))[^)]*\)/ nocase
         condition:
-            $varassign
+            $source_decode
     }
     """
 
