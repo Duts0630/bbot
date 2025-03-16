@@ -396,6 +396,7 @@ class codeql(BaseModule):
                                 {
                                     "description": f"POSSIBLE Client-side Vulnerability (YARA Match). {description})",
                                     "host": str(event.host),
+                                    "url": str(event.data)
                                 },
                                 "FINDING",
                                 event,
@@ -475,6 +476,8 @@ class codeql(BaseModule):
                     data = {
                         "description": f"POSSIBLE Client-side Vulnerability: {details_string}",
                         "host": str(event.host),
+                        "url": str(event.data)
+
                     }
 
                     # Emit event with the extracted information
