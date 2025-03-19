@@ -20,9 +20,9 @@ class codeql(BaseModule):
     }
     deps_pip = ["webcap"]
 
-    options = {"mode": "all", "min_severity": "error", "suppress_duplicates": False}
+    options = {"in_scope_only": False, "min_severity": "error", "suppress_duplicates": True}
     options_desc = {
-        "mode": "Script processing mode: 'all' (process all scripts), 'in_scope' (only process in-scope scripts), or 'dom_only' (only process DOM)",
+        "in_scope_only": "Only process scripts residing on in-scope hosts",
         "min_severity": "Minimum severity level to report (error, warning, recommendation, note)",
         "suppress_duplicates": "Skip findings when identical files are analyzed on the same host (default: False)"
     }
@@ -172,11 +172,7 @@ class codeql(BaseModule):
         # Compile YARA rules during setup
         self.compiled_yara_rules = self.helpers.yara.compile(source=self.yara_rules)
 
-        self.mode = self.config.get("mode", "in_scope").lower()
-        valid_modes = {"all", "in_scope", "dom_only"}
-        if self.mode not in valid_modes:
-            return False, f"Invalid mode '{self.mode}'. Valid options are: {', '.join(valid_modes)}"
-
+        self.in_scope_only = self.config.get("in_scope_only", False)
         self.severity_levels = {"error": 4, "warning": 3, "recommendation": 2, "note": 1}
         self.min_severity = self.config.get("min_severity", "error").lower()
         if self.min_severity not in self.severity_levels:
@@ -282,7 +278,7 @@ class codeql(BaseModule):
 
         # Run the command and capture the output
         async for line in self.run_process_live(command):
-            self.hugeinfo(line)
+            self.debug(f"CodeQL analysis output: {line}")
 
         # Read and parse the CSV results
         results = []
@@ -309,25 +305,6 @@ class codeql(BaseModule):
 
         return results
 
-    def format_location(self, file_name, script_urls, event_data):
-        """Format the location string based on the file name.
-
-        Args:
-            file_name (str): The name of the file being processed
-            script_urls (dict): Mapping of script numbers to their URLs
-            event_data (str): The event data (typically URL) being processed
-
-        Returns:
-            str: Formatted location string
-        """
-        file_name = file_name.lstrip("/")
-        if file_name.startswith("script_"):
-            script_num = int(file_name.split("_")[1].split(".")[0])
-            script_url = script_urls.get(script_num, "unknown_url")
-            return f"(script: {script_url})"
-        elif file_name == "dom.html":
-            return f"{event_data} (DOM)"
-        return file_name
 
     async def store_and_emit_finding(self, finding_data, event, files_hash):
         """Store finding in cache and emit event."""
@@ -337,7 +314,7 @@ class codeql(BaseModule):
         cache_data["data"].pop("url", None)  # Remove URL from cached data
         cache_data["data"].pop("host", None)  # Remove host from cached data
         self.processed_hashes[files_hash].append(cache_data)
-        self.verbose(f"Storing finding in cache for hash: {files_hash}")
+        self.verbose(f"Storing finding in cache for hash: {files_hash}, url: {finding_data['data'].get('url', 'N/A')}")
         
         await self.emit_event(
             finding_data["data"],
@@ -363,110 +340,92 @@ class codeql(BaseModule):
             )
 
     async def handle_event(self, event):
-        with tempfile.TemporaryDirectory() as js_temp_dir, tempfile.TemporaryDirectory() as dom_temp_dir:
-            script_urls = {}
+        with tempfile.TemporaryDirectory() as temp_dir:
+            files_to_process = {}  # hash -> (file_path, script_url, original_url)
 
             async for url, webscreenshot in self.b.screenshot_urls([event.data]):
-                # Handle DOM
-                dom = webscreenshot.dom
-                dom_file_path = os.path.join(dom_temp_dir, "dom.html")
-                with open(dom_file_path, "w") as dom_file:
-                    dom_file.write(dom)
-                self.debug(f"DOM file: {dom_file_path} written to temp directory")
+                scripts = webscreenshot.scripts
 
-                # Check if DOM directory has files
-                if not any(Path(dom_temp_dir).iterdir()):
-                    self.debug(f"No files to analyze in {dom_temp_dir}")
-                else:
-                    # Process DOM
-                    dom_hash = await self.get_directory_hash(dom_temp_dir)
-                    if dom_hash in self.processed_hashes:
-                        if self.config.get("suppress_duplicates", False):
-                            self.critical(f"Suppressing duplicate DOM findings for hash: {dom_hash} on host {event.host}")
-                        else:
-                            self.critical(f"Cache hit - reemitting DOM findings for hash: {dom_hash}")
-                            await self.emit_cached_findings(dom_hash, event)
-                    else:
-                        self.critical(f"No hash match for DOM: {dom_hash}")
-                        self.processed_hashes[dom_hash] = []
-                        findings = await self.codeql_process(dom_temp_dir, event, script_urls)
-                        for finding in findings:
-                            await self.store_and_emit_finding(finding, event, dom_hash)
+                for i, js in enumerate(scripts):
+                    script_url = js.json.get("url", url)
 
-                # Process JS files if not in dom_only mode
-                if self.mode != "dom_only":
-                    scripts = webscreenshot.scripts
-                    for i, js in enumerate(scripts):
-                        script_url = js.json.get("url", "unknown_url")
-
-                        # Skip scripts that are from the same URL as the page
-                        if script_url == str(event.data):
-                            self.debug(f"Skipping script with same URL as page: {script_url}")
+                    # Skip out-of-scope scripts if in_scope_only is True
+                    if self.in_scope_only:
+                        try:
+                            parsed_url = self.helpers.urlparse(script_url)
+                            script_domain = parsed_url.netloc
+                            if not self.scan.in_scope(script_domain):
+                                self.debug(f"Skipping out-of-scope script: {script_url}")
+                                continue
+                        except Exception as e:
+                            self.debug(f"Error parsing script URL {script_url}: {e}")
                             continue
 
-                        # Skip out-of-scope scripts in in_scope mode
-                        if self.mode == "in_scope":
-                            try:
-                                parsed_url = self.helpers.urlparse(script_url)
-                                script_domain = parsed_url.netloc
-                                if not self.scan.in_scope(script_domain):
-                                    self.debug(f"Skipping out-of-scope script: {script_url}")
-                                    continue
-                            except Exception as e:
-                                self.debug(f"Error parsing script URL {script_url}: {e}")
-                                continue
+                    loaded_js = js.json["script"]
+                    file_path = os.path.join(temp_dir, f"script_{i}.js")
 
-                        loaded_js = js.json["script"]
-                        script_urls[i] = script_url
-                        js_file_path = os.path.join(js_temp_dir, f"script_{i}.js")
-                        with open(js_file_path, "w") as js_file:
-                            js_file.write(loaded_js)
-                        self.debug(f"JS file: {js_file_path} written to temp directory. Source: [{script_url}]")
+                    # Write file contents
+                    with open(file_path, "w") as js_file:
+                        js_file.write(loaded_js)
 
-                    # Check if JS directory has files
-                    if not any(Path(js_temp_dir).iterdir()):
-                        self.debug(f"No files to analyze in {js_temp_dir}")
-                    else:
-                        # Process JS files
-                        files_hash = await self.get_directory_hash(js_temp_dir)
-                        if files_hash in self.processed_hashes:
-                            if self.config.get("suppress_duplicates", False):
-                                self.critical(f"Suppressing duplicate JS findings for hash: {files_hash} on host {event.host}")
-                            else:
-                                self.critical(f"Cache hit - reemitting JS findings for hash: {files_hash}")
-                                await self.emit_cached_findings(files_hash, event)
+                    # Calculate hash
+                    file_hash = await self.get_file_hash(file_path)
+                    
+                    if file_hash in self.processed_hashes:
+                        if self.config.get("suppress_duplicates", False):
+                            self.debug(f"Suppressing duplicate findings for hash: {file_hash} on host {event.host}")
                         else:
-                            self.critical(f"No hash match for JS: {files_hash}")
-                            self.processed_hashes[files_hash] = []
-                            findings = await self.codeql_process(js_temp_dir, event, script_urls)
-                            for finding in findings:
-                                await self.store_and_emit_finding(finding, event, files_hash)
+                            self.verbose(f"Cache hit - reemitting findings for hash: {file_hash}")
+                            await self.emit_cached_findings(file_hash, event)
+                        # Delete the file if it's already processed
+                        os.remove(file_path)
+                    else:
+                        self.debug(f"No hash match for [{script_url}]: {file_hash}")
+                        self.processed_hashes[file_hash] = []
+                        files_to_process[file_hash] = (file_path, script_url, str(event.data))
 
-    async def codeql_process(self, temp_dir, event, script_urls):
-        """Process files in a directory with CodeQL and handle caching."""
-        findings = []
+            # Check if there are files to process
+            if files_to_process:
+                self.debug(f"Processing {len(files_to_process)} files")
 
-        # Check if directory has any files before proceeding
-        if not any(Path(temp_dir).iterdir()):
-            self.debug(f"No files to analyze in {temp_dir}")
-            return findings
+                # Generate a consistent database path
+                database_path = os.path.join(self.helpers.tools_dir, "codeql", "databases", str(uuid.uuid4()))
+                os.makedirs(database_path, exist_ok=True)
 
+                findings_map = await self.codeql_process_files(temp_dir, files_to_process, database_path)
+                await self.process_findings(files_to_process, findings_map, event)
 
-        for root, _, files in os.walk(temp_dir):
-            for file in files:
-                file_path = os.path.join(root, file)
+                # Clean up the specific database directory used
+                if os.path.exists(database_path):
+                    shutil.rmtree(database_path)
+                    self.debug(f"Cleaned up database directory: {database_path}")
+
+    async def process_findings(self, batch_files, findings_map, event):
+        """Process and emit findings for a batch of files."""
+        for file_hash, findings in findings_map.items():
+            _, script_url, original_url = batch_files[file_hash]
+            for finding in findings:
+                # Update finding with correct URLs
+                finding["data"]["url"] = original_url
+                finding["data"]["script_url"] = script_url
+                await self.store_and_emit_finding(finding, event, file_hash)
+
+    async def codeql_process_files(self, temp_dir, files_to_process, database_path):
+        """Process multiple files in a single CodeQL database."""
+        findings_map = {hash_: [] for hash_ in files_to_process.keys()}
+
+        # First run YARA checks for all files
+        for file_hash, (file_path, script_url, _) in files_to_process.items():
+            try:
                 with open(file_path, "r") as f:
                     content = f.read()
                     results = await self.helpers.yara.match(self.compiled_yara_rules, content, full_result=True)
                     for result in results:
-                        # Get rule metadata and name from the match
                         yara_description = result["meta"].get("description", "")
                         confidence = result["meta"].get("confidence", "")
                         rule_name = result["meta"].get("name", result["rule"])
 
-                        # Build description components
                         description = f"{rule_name}: {yara_description}."
-
                         if confidence:
                             description += f" Confidence: [{confidence}]"
 
@@ -474,91 +433,84 @@ class codeql(BaseModule):
                         if len(matched_text) > 150:
                             matched_text = matched_text[:147] + "..."
                         description += f" Matched Text: [{matched_text}]"
-
-                        # Format the location using the same helper function
-                        location = self.format_location(os.path.basename(file_path), script_urls, event.data)
-                        description += f" Location: [{location}]"
+                        description += f" Location: [{script_url}]"
 
                         finding_data = {
                             "data": {
                                 "description": f"POSSIBLE Client-side Vulnerability (YARA Match). {description})",
-                                "host": str(event.host),
-                                "url": str(event.data)
+                                "script_url": script_url
                             },
-                            "context": f"{{module}} module found a YARA match for rule '{rule_name}' in {location}"
+                            "context": f"{{module}} module found a YARA match for rule '{rule_name}' in {script_url}"
                         }
-                        
-                        findings.append(finding_data)
+                        findings_map[file_hash].append(finding_data)
+            except Exception as e:
+                self.debug(f"Error processing YARA for {file_path}: {e}")
 
-        # Process with CodeQL
-        database_path = f"{self.helpers.tools_dir}/codeql/databases/{str(uuid.uuid4())}"
+        # Create and analyze CodeQL database
         await self.execute_codeql_create_db(temp_dir, database_path)
         results = await self.execute_codeql_analyze_db(database_path)
         
-        # Process results
+        # Process CodeQL results
         for result in results:
-            # Extract relevant code portion
             file_path = os.path.join(temp_dir, result["file"].lstrip("/"))
-            with open(file_path, "r") as f:
-                lines = f.readlines()
+            
+            # Map result back to original file
+            file_hash = None
+            script_url = None
+            for h, (fp, url, _) in files_to_process.items():
+                if os.path.samefile(fp, file_path):
+                    file_hash = h
+                    script_url = url
+                    break
+            
+            if not file_hash:
+                self.debug(f"Could not map result back to original file: {file_path}")
+                continue
 
-                # Attempt to extract code snippet if line numbers are valid
-                start_line = result.get("start_line")
-                start_column = result.get("start_column")
-                end_column = result.get("end_column")
+            # Extract code snippet and process finding
+            try:
+                with open(file_path, "r") as f:
+                    lines = f.readlines()
+                    start_line = result.get("start_line")
+                    code_snippet = None
+                    
+                    if isinstance(start_line, int):
+                        start_line -= 1
+                        full_line = lines[start_line].strip().encode("ascii", "replace").decode()
+                        
+                        if len(full_line) <= 150:
+                            code_snippet = full_line
+                        elif all(isinstance(x, int) for x in [result.get("start_column"), result.get("end_column")]):
+                            code_snippet = full_line[result["start_column"]-1:result["end_column"]]
+                        else:
+                            code_snippet = full_line[:147] + "..."
 
-                code_snippet = None
-                if isinstance(start_line, int):
-                    start_line -= 1  # Adjust for zero-based index
-                    # Get the full line and sanitize for console output
-                    full_line = lines[start_line].strip().encode("ascii", "replace").decode()
+                    if not self.severity_threshold(result["severity"]):
+                        continue
 
-                    # If line is under 150 chars, use the whole line
-                    if len(full_line) <= 150:
-                        code_snippet = full_line
-                    # Otherwise use the column positions
-                    elif all(isinstance(x, int) for x in [start_column, end_column]):
-                        start_column -= 1  # Adjust for zero-based index
-                        code_snippet = full_line[start_column:end_column]
-                    else:
-                        # If we can't use columns, truncate with ellipsis
-                        code_snippet = full_line[:147] + "..."
+                    location_details = f"Line: {start_line + 1}"
+                    if isinstance(result.get("start_column"), int) and isinstance(result.get("end_column"), int):
+                        location_details += f" Cols: {result['start_column']}-{result['end_column']}"
 
-                    self.debug(f"Extracted code snippet (line {start_line + 1}):\n{code_snippet}")
-                else:
-                    self.debug(f"Could not extract code snippet due to invalid line numbers: {result}")
+                    details_string = (
+                        f"{result['title']}. Description: [{result['full_description']}] "
+                        f"Severity: [{result['severity']}] Location: [{script_url} ({location_details})] "
+                        f"Code Snippet: [{code_snippet}]"
+                    )
 
-                # Skip results that don't meet severity threshold
-                if not self.severity_threshold(result["severity"]):
-                    continue
+                    finding_data = {
+                        "data": {
+                            "description": f"POSSIBLE Client-side Vulnerability: {details_string}",
+                            "script_url": script_url
+                        },
+                        "context": f"{{module}} module found POSSIBLE Client-side Vulnerability: {details_string}"
+                    }
+                    findings_map[file_hash].append(finding_data)
 
-                # Format the location string using the new function
-                location = self.format_location(result["file"], script_urls, event.data)
+            except Exception as e:
+                self.debug(f"Error processing finding for {file_path}: {e}")
 
-                # Add line and column information
-                location_details = f"Line: {start_line + 1}"
-                if isinstance(start_column, int) and isinstance(end_column, int):
-                    location_details += f" Cols: {start_column}-{end_column}"
-
-                # Prepare details string with all the information
-                details_string = f"{result['title']}. Description: [{result['full_description']}] Severity: [{result['severity']}] Location: [{location} ({location_details})] Code Snippet: [{code_snippet}]"
-
-                finding_data = {
-                    "data": {
-                        "description": f"POSSIBLE Client-side Vulnerability: {details_string}",
-                        "host": str(event.host),
-                        "url": str(event.data)
-                    },
-                    "context": f"{{module}} module found POSSIBLE Client-side Vulnerability: {details_string}"
-                }
-
-                findings.append(finding_data)
-
-        # Clean up
-        shutil.rmtree(database_path)
-        self.debug(f"Cleaned up database directory: {database_path}")
-
-        return findings
+        return findings_map
 
     def severity_threshold(self, severity):
         severity = severity.lower()
@@ -566,27 +518,14 @@ class codeql(BaseModule):
         current_level = self.severity_levels.get(severity, 0)  # Default to 0 if unknown severity
         return current_level >= min_level
 
-    async def get_directory_hash(self, directory):
-        """Calculate a fast hash of all files in a directory using built-in hash function."""
-        # Get all files and sort them for deterministic ordering
-        all_files = []
-        for root, _, files in os.walk(directory):
-            for filename in files:
-                file_path = os.path.join(root, filename)
-                rel_path = os.path.relpath(file_path, directory)
-                all_files.append((rel_path, file_path))
-        
-        all_files.sort()
-        
+    async def get_file_hash(self, file_path):
+        """Calculate a fast hash of a single file using built-in hash function."""
         hash_value = 0
-        for rel_path, file_path in all_files:
-            try:
-                with open(file_path, 'rb') as f:
-                    hash_value = ((hash_value * 31) + hash(rel_path)) & 0xFFFFFFFF
-                    while chunk := f.read(8192):
-                        hash_value = ((hash_value * 31) + hash(chunk)) & 0xFFFFFFFF
-            except Exception as e:
-                self.debug(f"Error hashing file {file_path}: {e}")
-                continue
+        try:
+            with open(file_path, 'rb') as f:
+                while chunk := f.read(8192):
+                    hash_value = ((hash_value * 31) + hash(chunk)) & 0xFFFFFFFF
+        except Exception as e:
+            self.debug(f"Error hashing file {file_path}: {e}")
         
         return str(hash_value)
