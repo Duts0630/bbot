@@ -329,16 +329,15 @@ class codeql(BaseModule):
             return f"{event_data} (DOM)"
         return file_name
 
-    async def store_and_emit_finding(self, finding_data, event, files_hash=None):
+    async def store_and_emit_finding(self, finding_data, event, files_hash):
         """Store finding in cache and emit event."""
-        if files_hash:
-            # Store everything except URL and host
-            cache_data = finding_data.copy()
-            cache_data["data"] = finding_data["data"].copy()
-            cache_data["data"].pop("url", None)  # Remove URL from cached data
-            cache_data["data"].pop("host", None)  # Remove host from cached data
-            self.processed_hashes[files_hash].append(cache_data)
-            self.verbose(f"Storing finding in cache for hash: {files_hash}")
+        # Store everything except URL and host
+        cache_data = finding_data.copy()
+        cache_data["data"] = finding_data["data"].copy()
+        cache_data["data"].pop("url", None)  # Remove URL from cached data
+        cache_data["data"].pop("host", None)  # Remove host from cached data
+        self.processed_hashes[files_hash].append(cache_data)
+        self.verbose(f"Storing finding in cache for hash: {files_hash}")
         
         await self.emit_event(
             finding_data["data"],
