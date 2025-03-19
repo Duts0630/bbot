@@ -362,64 +362,133 @@ class codeql(BaseModule):
                 context=finding_data["context"]
             )
 
-    async def codeql_process(self, temp_dir, files_hash, event, script_urls=None):
-        """Process files in a directory with CodeQL and handle caching."""
-        # Check cache
-        if files_hash in self.processed_hashes:
-            if self.config.get("suppress_duplicates", False):
-                self.verbose(f"Suppressing duplicate findings for hash: {files_hash} on host {event.host}")
-                return
-            self.verbose(f"Cache hit - reemitting findings for hash: {files_hash}")
-            await self.emit_cached_findings(files_hash, event)
-            return
+    async def handle_event(self, event):
+        with tempfile.TemporaryDirectory() as js_temp_dir, tempfile.TemporaryDirectory() as dom_temp_dir:
+            script_urls = {}
 
-        # Initialize empty list for this hash
-        self.processed_hashes[files_hash] = []
+            async for url, webscreenshot in self.b.screenshot_urls([event.data]):
+                # Handle DOM
+                dom = webscreenshot.dom
+                dom_file_path = os.path.join(dom_temp_dir, "dom.html")
+                with open(dom_file_path, "w") as dom_file:
+                    dom_file.write(dom)
+                self.debug(f"DOM file: {dom_file_path} written to temp directory")
+
+                # Check if DOM directory has files
+                if not any(Path(dom_temp_dir).iterdir()):
+                    self.debug(f"No files to analyze in {dom_temp_dir}")
+                else:
+                    # Process DOM
+                    dom_hash = await self.get_directory_hash(dom_temp_dir)
+                    if dom_hash in self.processed_hashes:
+                        if self.config.get("suppress_duplicates", False):
+                            self.critical(f"Suppressing duplicate DOM findings for hash: {dom_hash} on host {event.host}")
+                        else:
+                            self.critical(f"Cache hit - reemitting DOM findings for hash: {dom_hash}")
+                            await self.emit_cached_findings(dom_hash, event)
+                    else:
+                        self.critical(f"No hash match for DOM: {dom_hash}")
+                        self.processed_hashes[dom_hash] = []
+                        findings = await self.codeql_process(dom_temp_dir, event, script_urls)
+                        for finding in findings:
+                            await self.store_and_emit_finding(finding, event, dom_hash)
+
+                # Process JS files if not in dom_only mode
+                if self.mode != "dom_only":
+                    scripts = webscreenshot.scripts
+                    for i, js in enumerate(scripts):
+                        script_url = js.json.get("url", "unknown_url")
+
+                        # Skip scripts that are from the same URL as the page
+                        if script_url == str(event.data):
+                            self.debug(f"Skipping script with same URL as page: {script_url}")
+                            continue
+
+                        # Skip out-of-scope scripts in in_scope mode
+                        if self.mode == "in_scope":
+                            try:
+                                parsed_url = self.helpers.urlparse(script_url)
+                                script_domain = parsed_url.netloc
+                                if not self.scan.in_scope(script_domain):
+                                    self.debug(f"Skipping out-of-scope script: {script_url}")
+                                    continue
+                            except Exception as e:
+                                self.debug(f"Error parsing script URL {script_url}: {e}")
+                                continue
+
+                        loaded_js = js.json["script"]
+                        script_urls[i] = script_url
+                        js_file_path = os.path.join(js_temp_dir, f"script_{i}.js")
+                        with open(js_file_path, "w") as js_file:
+                            js_file.write(loaded_js)
+                        self.debug(f"JS file: {js_file_path} written to temp directory. Source: [{script_url}]")
+
+                    # Check if JS directory has files
+                    if not any(Path(js_temp_dir).iterdir()):
+                        self.debug(f"No files to analyze in {js_temp_dir}")
+                    else:
+                        # Process JS files
+                        files_hash = await self.get_directory_hash(js_temp_dir)
+                        if files_hash in self.processed_hashes:
+                            if self.config.get("suppress_duplicates", False):
+                                self.critical(f"Suppressing duplicate JS findings for hash: {files_hash} on host {event.host}")
+                            else:
+                                self.critical(f"Cache hit - reemitting JS findings for hash: {files_hash}")
+                                await self.emit_cached_findings(files_hash, event)
+                        else:
+                            self.critical(f"No hash match for JS: {files_hash}")
+                            self.processed_hashes[files_hash] = []
+                            findings = await self.codeql_process(js_temp_dir, event, script_urls)
+                            for finding in findings:
+                                await self.store_and_emit_finding(finding, event, files_hash)
+
+    async def codeql_process(self, temp_dir, event, script_urls):
+        """Process files in a directory with CodeQL and handle caching."""
+        findings = []
 
         # Check if directory has any files before proceeding
         if not any(Path(temp_dir).iterdir()):
             self.debug(f"No files to analyze in {temp_dir}")
-            return
+            return findings
 
-        # YARA scanning (for JS files only)
-        if script_urls is not None:  # This indicates we're processing JS files
-            for root, _, files in os.walk(temp_dir):
-                for file in files:
-                    file_path = os.path.join(root, file)
-                    with open(file_path, "r") as f:
-                        content = f.read()
-                        results = await self.helpers.yara.match(self.compiled_yara_rules, content, full_result=True)
-                        for result in results:
-                            # Get rule metadata and name from the match
-                            yara_description = result["meta"].get("description", "")
-                            confidence = result["meta"].get("confidence", "")
-                            rule_name = result["meta"].get("name", result["rule"])
 
-                            # Build description components
-                            description = f"{rule_name}: {yara_description}."
+        for root, _, files in os.walk(temp_dir):
+            for file in files:
+                file_path = os.path.join(root, file)
+                with open(file_path, "r") as f:
+                    content = f.read()
+                    results = await self.helpers.yara.match(self.compiled_yara_rules, content, full_result=True)
+                    for result in results:
+                        # Get rule metadata and name from the match
+                        yara_description = result["meta"].get("description", "")
+                        confidence = result["meta"].get("confidence", "")
+                        rule_name = result["meta"].get("name", result["rule"])
 
-                            if confidence:
-                                description += f" Confidence: [{confidence}]"
+                        # Build description components
+                        description = f"{rule_name}: {yara_description}."
 
-                            matched_text = result["matched_string"]
-                            if len(matched_text) > 150:
-                                matched_text = matched_text[:147] + "..."
-                            description += f" Matched Text: [{matched_text}]"
+                        if confidence:
+                            description += f" Confidence: [{confidence}]"
 
-                            # Format the location using the same helper function
-                            location = self.format_location(os.path.basename(file_path), script_urls, event.data)
-                            description += f" Location: [{location}]"
+                        matched_text = result["matched_string"]
+                        if len(matched_text) > 150:
+                            matched_text = matched_text[:147] + "..."
+                        description += f" Matched Text: [{matched_text}]"
 
-                            finding_data = {
-                                "data": {
-                                    "description": f"POSSIBLE Client-side Vulnerability (YARA Match). {description})",
-                                    "host": str(event.host),
-                                    "url": str(event.data)
-                                },
-                                "context": f"{{module}} module found a YARA match for rule '{rule_name}' in {location}"
-                            }
-                            
-                            await self.store_and_emit_finding(finding_data, event, files_hash)
+                        # Format the location using the same helper function
+                        location = self.format_location(os.path.basename(file_path), script_urls, event.data)
+                        description += f" Location: [{location}]"
+
+                        finding_data = {
+                            "data": {
+                                "description": f"POSSIBLE Client-side Vulnerability (YARA Match). {description})",
+                                "host": str(event.host),
+                                "url": str(event.data)
+                            },
+                            "context": f"{{module}} module found a YARA match for rule '{rule_name}' in {location}"
+                        }
+                        
+                        findings.append(finding_data)
 
         # Process with CodeQL
         database_path = f"{self.helpers.tools_dir}/codeql/databases/{str(uuid.uuid4())}"
@@ -483,61 +552,13 @@ class codeql(BaseModule):
                     "context": f"{{module}} module found POSSIBLE Client-side Vulnerability: {details_string}"
                 }
 
-                await self.store_and_emit_finding(finding_data, event, files_hash)
+                findings.append(finding_data)
 
         # Clean up
         shutil.rmtree(database_path)
         self.debug(f"Cleaned up database directory: {database_path}")
 
-    async def handle_event(self, event):
-        with tempfile.TemporaryDirectory() as js_temp_dir, tempfile.TemporaryDirectory() as dom_temp_dir:
-            script_urls = {}
-
-            async for url, webscreenshot in self.b.screenshot_urls([event.data]):
-                # Handle DOM
-                dom = webscreenshot.dom
-                dom_file_path = os.path.join(dom_temp_dir, "dom.html")
-                with open(dom_file_path, "w") as dom_file:
-                    dom_file.write(dom)
-                self.debug(f"DOM file: {dom_file_path} written to temp directory")
-
-                # Process DOM
-                dom_hash = await self.get_directory_hash(dom_temp_dir)
-                await self.codeql_process(dom_temp_dir, dom_hash, event)
-
-                # Process JS files if not in dom_only mode
-                if self.mode != "dom_only":
-                    scripts = webscreenshot.scripts
-                    for i, js in enumerate(scripts):
-                        script_url = js.json.get("url", "unknown_url")
-
-                        # Skip scripts that are from the same URL as the page
-                        if script_url == str(event.data):
-                            self.debug(f"Skipping script with same URL as page: {script_url}")
-                            continue
-
-                        # Skip out-of-scope scripts in in_scope mode
-                        if self.mode == "in_scope":
-                            try:
-                                parsed_url = self.helpers.urlparse(script_url)
-                                script_domain = parsed_url.netloc
-                                if not self.scan.in_scope(script_domain):
-                                    self.debug(f"Skipping out-of-scope script: {script_url}")
-                                    continue
-                            except Exception as e:
-                                self.debug(f"Error parsing script URL {script_url}: {e}")
-                                continue
-
-                        loaded_js = js.json["script"]
-                        script_urls[i] = script_url
-                        js_file_path = os.path.join(js_temp_dir, f"script_{i}.js")
-                        with open(js_file_path, "w") as js_file:
-                            js_file.write(loaded_js)
-                        self.debug(f"JS file: {js_file_path} written to temp directory. Source: [{script_url}]")
-
-                    # Process JS files
-                    files_hash = await self.get_directory_hash(js_temp_dir)
-                    await self.codeql_process(js_temp_dir, files_hash, event, script_urls)
+        return findings
 
     def severity_threshold(self, severity):
         severity = severity.lower()
