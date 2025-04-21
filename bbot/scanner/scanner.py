@@ -425,7 +425,11 @@ class Scanner:
             await self._report()
             await self._cleanup()
 
+            # report on final scan status and shut down dispatcher
             await self.dispatcher.on_finish(self)
+            self.dispatcher_task.cancel()
+            with contextlib.suppress(asyncio.CancelledError):
+                await self.dispatcher_task.wait()
 
             self._stop_log_handlers()
 
@@ -828,8 +832,8 @@ class Scanner:
         # ticker
         if self.ticker_task:
             tasks.append(self.ticker_task)
-        # dispatcher
-        tasks += self.dispatcher_tasks
+        # we don't cancel the dispatcher task because it still needs to report on the final scan status
+        # tasks += self.dispatcher_tasks
         # manager worker loops
         tasks += self._manager_worker_loop_tasks
         self.helpers.cancel_tasks_sync(tasks)
