@@ -1,6 +1,5 @@
 import json
 import asyncio
-import aio_pika
 from contextlib import suppress
 
 from .base import ModuleTestBase
@@ -18,6 +17,8 @@ class TestRabbitMQ(ModuleTestBase):
     skip_distro_tests = True
 
     async def setup_before_prep(self, module_test):
+        import aio_pika
+
         # Start RabbitMQ
         await asyncio.create_subprocess_exec(
             "docker", "run", "-d", "--rm", "--name", "bbot-test-rabbitmq", "-p", "5672:5672", "rabbitmq:3-management"
@@ -36,6 +37,8 @@ class TestRabbitMQ(ModuleTestBase):
                 await asyncio.sleep(0.5)  # Wait a bit before retrying
 
     async def check(self, module_test, events):
+        import aio_pika
+
         connection = await aio_pika.connect_robust("amqp://guest:guest@localhost/")
         channel = await connection.channel()
         queue = await channel.declare_queue("bbot_events", durable=True)
