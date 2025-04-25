@@ -1,7 +1,7 @@
 import json
 import logging
+from typing import Optional, List, Annotated
 from pydantic import BaseModel, ConfigDict, Field
-from typing import Optional, List, Annotated, Optional
 
 from bbot.models.helpers import utc_now_timestamp
 
