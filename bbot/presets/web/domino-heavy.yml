@@ -23,5 +23,6 @@ config:
         - xss-js
         - get-parameter-discovery
         - get-parameter-reflection
+      suppress_parameter_discovery_reports: False
     wayback:
       urls: True

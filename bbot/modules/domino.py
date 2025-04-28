@@ -18,9 +18,10 @@ class domino(BaseModule):
     }
     module_threads = 3
     deps_pip = ["playwright", "d0m1n0"]
-    options = {"rules": None}
+    options = {"rules": None, "suppress_parameter_discovery_reports": True}
     options_desc = {
         "rules": "Comma-separated list of rules to run. 'None' for all rules (default).",
+        "suppress_parameter_discovery_reports": "Allow parameter discovery be used to drive rules but supress reporting the discovery itself",
     }
 
     async def setup(self):
@@ -45,6 +46,7 @@ class domino(BaseModule):
         self.browser_instance = await self.playwright.chromium.launch(headless=True)
         self.logger = logging.getLogger("domino")
         self.preset.core.logger.include_logger(self.logger)
+        self.suppress_parameter_discovery_reports = self.config.get("suppress_parameter_discovery_reports", True)
         return True
 
     async def handle_event(self, event):
@@ -75,6 +77,8 @@ class domino(BaseModule):
                 data["severity"] = "high"
                 await self.emit_event(data, "VULNERABILITY", event)
             else:
+                if self.suppress_parameter_discovery_reports and "GET Parameter Access" in result["rule_name"]:
+                    continue
                 await self.emit_event(data, "FINDING", event)
 
     async def finish(self):
