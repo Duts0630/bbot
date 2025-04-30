@@ -286,6 +286,7 @@ class crypto(BaseLightfuzz):
                     {
                         "type": "VULNERABILITY",
                         "severity": "HIGH",
+                        "name": "Padding Oracle Vulnerability",
                         "description": f"Padding Oracle Vulnerability. Block size: [{str(block_size)}] {self.metadata()}",
                         "context": context,
                     }
