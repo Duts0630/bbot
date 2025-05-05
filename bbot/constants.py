@@ -34,9 +34,9 @@ def get_scan_status_name(status):
         if isinstance(status, str):
             if not is_valid_scan_status(status):
                 raise ValueError(f"Invalid scan status: {status}")
-            return SCAN_STATUS_CODES[status]
+            return status
         elif isinstance(status, int):
-            return SCAN_STATUSES[status]
+            return SCAN_STATUS_CODES[status]
         else:
             raise ValueError(f"Invalid scan status: {status} (must be int or str)")
     except KeyError:
