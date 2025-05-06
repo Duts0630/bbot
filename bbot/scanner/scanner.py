@@ -791,7 +791,7 @@ class Scanner:
         # if new events were generated since last time we were here
         if self._new_activity:
             self._new_activity = False
-            self.status = "FINISHING"
+            await self._set_status(SCAN_STATUS_FINISHING)
             # Trigger .finished() on every module and start over
             log.info("Finishing scan")
             for module in self.modules.values():
