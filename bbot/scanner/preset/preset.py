@@ -826,7 +826,7 @@ class Preset(metaclass=BasePreset):
         if self.scan_name:
             preset_dict["scan_name"] = self.scan_name
         if self.scan_name and self.output_dir is not None:
-            preset_dict["output_dir"] = self.output_dir
+            preset_dict["output_dir"] = str(self.output_dir)
 
         # conditions
         if self.conditions:
