@@ -76,8 +76,8 @@ class Preset(metaclass=BasePreset):
         Based on the state of the preset, you can print a warning message, abort the scan, enable/disable modules, etc..
 
     Attributes:
-        target (Target): Target(s) of scan.
-        whitelist (Target): Scan whitelist (by default this is the same as `target`).
+        targets (Target): Target(s) of scan.
+        whitelist (Target): Scan whitelist (by default this is the same as `targets`).
         blacklist (Target): Scan blacklist (this takes ultimate precedence).
         helpers (ConfigAwareHelper): Helper containing various reusable functions, regexes, etc.
         output_dir (pathlib.Path): Output directory for scan.
@@ -290,7 +290,7 @@ class Preset(metaclass=BasePreset):
 
     @property
     def seeds(self):
-        if self._seeds is None:
+        if self._target is None:
             raise ValueError("Cannot access target before preset is baked (use ._seeds instead)")
         return self.target.seeds
 
@@ -658,7 +658,7 @@ class Preset(metaclass=BasePreset):
             >>> preset = Preset.from_dict({"target": ["evilcorp.com"], "modules": ["portscan"]})
         """
         new_preset = cls(
-            *preset_dict.get("target", []),
+            *preset_dict.get("targets", []),
             whitelist=preset_dict.get("whitelist"),
             blacklist=preset_dict.get("blacklist"),
             modules=preset_dict.get("modules"),
