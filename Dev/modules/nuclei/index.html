@@ -20,7 +20,7 @@
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="../../assets/_mkdocstrings.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-<link href="../../assets/stylesheets/extra-style.7hd96_nn.min.css" rel="stylesheet"/></head>
+<link href="../../assets/stylesheets/extra-style._d9sy3x7.min.css" rel="stylesheet"/></head>
 <body data-md-color-accent="deep-orange" data-md-color-primary="black" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
@@ -771,7 +771,7 @@
 <tr>
 <td>modules.nuclei.budget</td>
 <td>int</td>
-<td>Used in budget mode to set the number of requests which will be allotted to the nuclei scan</td>
+<td>Used in budget mode to set the number of allowed requests per host</td>
 <td>1</td>
 </tr>
 <tr>
@@ -797,6 +797,12 @@
 <td>str</td>
 <td>manual | technology | severe | budget. Technology: Only activate based on technology events that match nuclei tags (nuclei -as mode). Manual (DEFAULT): Fully manual settings. Severe: Only critical and high severity templates without intrusive. Budget: Limit Nuclei to a specified number of HTTP requests</td>
 <td>manual</td>
+</tr>
+<tr>
+<td>modules.nuclei.module_timeout</td>
+<td>int</td>
+<td>Max time in seconds to spend handling each batch of events</td>
+<td>21600</td>
 </tr>
 <tr>
 <td>modules.nuclei.ratelimit</td>
