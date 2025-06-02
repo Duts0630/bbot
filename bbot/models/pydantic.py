@@ -11,11 +11,6 @@ log = logging.getLogger("bbot_server.models")
 class BBOTBaseModel(BaseModel):
     model_config = ConfigDict(extra="ignore")
 
-    def __init__(self, **data):
-        super().__init__(**data)
-        if getattr(self, "host", ""):
-            self.reverse_host = self.host[::-1]
-
     def to_json(self, **kwargs):
         return json.dumps(self.model_dump(), sort_keys=True, **kwargs)
 
