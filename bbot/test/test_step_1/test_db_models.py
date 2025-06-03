@@ -18,7 +18,7 @@ def test_pydantic_models(events, bbot_scanner):
     assert utc_now2.timestamp() == utc_now.timestamp()
 
     test_event = Event(**events.ipv4.json())
-    assert sorted(test_event._indexed_fields()) == [
+    assert sorted(test_event.indexed_fields()) == [
         "data",
         "host",
         "id",
