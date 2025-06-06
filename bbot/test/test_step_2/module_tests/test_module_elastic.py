@@ -103,9 +103,9 @@ class TestElastic(ModuleTestBase):
                 # Events don't match exactly because the elastic ones have reverse_host and inserted_at
                 assert events_json != db_events_pydantic
                 for db_event in db_events_pydantic:
-                    db_event.pop("reverse_host")
-                    db_event.pop("inserted_at")
-                    db_event.pop("archived")
+                    db_event.pop("reverse_host", None)
+                    db_event.pop("inserted_at", None)
+                    db_event.pop("archived", None)
                 # They should match after removing reverse_host
                 assert events_json == db_events_pydantic, "Events do not match"
 

@@ -5,6 +5,10 @@ from bbot.modules.output.base import BaseOutputModule
 
 
 class Mongo(BaseOutputModule):
+    """
+    docker run --rm -p 27017:27017 mongo
+    """
+
     watched_events = ["*"]
     meta = {
         "description": "Output scan data to a MongoDB database",
@@ -48,11 +52,11 @@ class Mongo(BaseOutputModule):
         self.targets_collection = self.db[f"{self.collection_prefix}targets"]
 
         # Build an index for each field in reverse_host and host
-        for field_name, field in Event.model_fields.items():
-            if "indexed" in field.metadata:
-                unique = "unique" in field.metadata
-                await self.events_collection.create_index([(field_name, 1)], unique=unique)
-                self.verbose(f"Index created for field: {field_name} (unique={unique})")
+        for fieldname, metadata in Event.indexed_fields().items():
+            if "indexed" in metadata:
+                unique = "unique" in metadata
+                await self.events_collection.create_index([(fieldname, 1)], unique=unique)
+                self.verbose(f"Index created for field: {fieldname} (unique={unique})")
 
         return True
 
@@ -65,6 +69,7 @@ class Mongo(BaseOutputModule):
                 break
             except Exception as e:
                 self.warning(f"Error inserting event into MongoDB: {e}, retrying...")
+                self.trace()
                 await self.helpers.sleep(1)
 
         if event.type == "SCAN":

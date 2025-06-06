@@ -1,7 +1,7 @@
 import json
 import logging
-from typing import Optional, List, Annotated
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, computed_field
+from typing import Optional, List, Annotated, get_origin, get_args
 
 from bbot.models.helpers import utc_now_timestamp
 
@@ -10,11 +10,6 @@ log = logging.getLogger("bbot_server.models")
 
 class BBOTBaseModel(BaseModel):
     model_config = ConfigDict(extra="ignore")
-
-    def __init__(self, **data):
-        super().__init__(**data)
-        if getattr(self, "host", ""):
-            self.reverse_host = self.host[::-1]
 
     def to_json(self, **kwargs):
         return json.dumps(self.model_dump(), sort_keys=True, **kwargs)
@@ -26,8 +21,24 @@ class BBOTBaseModel(BaseModel):
         return hash(self) == hash(other)
 
     @classmethod
-    def _indexed_fields(cls):
-        return sorted(field_name for field_name, field in cls.model_fields.items() if "indexed" in field.metadata)
+    def indexed_fields(cls):
+        indexed_fields = {}
+
+        # Handle regular fields
+        for fieldname, field in cls.model_fields.items():
+            if any(isinstance(m, str) and m.startswith("indexed") for m in field.metadata):
+                indexed_fields[fieldname] = field.metadata
+
+        # Handle computed fields
+        for fieldname, field in cls.model_computed_fields.items():
+            return_type = field.return_type
+            if get_origin(return_type) is Annotated:
+                type_args = get_args(return_type)
+                metadata = list(type_args[1:])  # Skip the first arg (the actual type)
+                if any(isinstance(m, str) and m.startswith("indexed") for m in metadata):
+                    indexed_fields[fieldname] = metadata
+
+        return indexed_fields
 
     # we keep these because they were a lot of work to make and maybe someday they'll be useful again
 
@@ -70,9 +81,6 @@ class Event(BBOTBaseModel):
     host: Annotated[Optional[str], "indexed"] = None
     port: Optional[int] = None
     netloc: Optional[str] = None
-    # we store the host in reverse to allow for instant subdomain queries
-    # this works because indexes are left-anchored, but we need to search starting from the right side
-    reverse_host: Annotated[Optional[str], "indexed"] = ""
     resolved_hosts: Optional[List] = None
     dns_children: Optional[dict] = None
     web_spider_distance: int = 10
@@ -97,6 +105,17 @@ class Event(BBOTBaseModel):
 
     def __hash__(self):
         return hash(self.id)
+
+    @computed_field
+    @property
+    def reverse_host(self) -> Annotated[Optional[str], "indexed"]:
+        """
+        We store the host in reverse to allow for instant subdomain queries
+        This works because indexes are left-anchored, but we need to search starting from the right side
+        """
+        if self.host:
+            return self.host[::-1]
+        return None
 
 
 ### SCAN ###

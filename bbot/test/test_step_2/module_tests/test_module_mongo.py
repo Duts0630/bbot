@@ -76,7 +76,7 @@ class TestMongo(ModuleTestBase):
             # make sure the collection has all the right indexes
             cursor = events_collection.list_indexes()
             indexes = await cursor.to_list(length=None)
-            for field in Event._indexed_fields():
+            for field in Event.indexed_fields():
                 assert any(field in index["key"] for index in indexes), f"Index for {field} not found"
 
             ### EVENTS ###
@@ -116,9 +116,9 @@ class TestMongo(ModuleTestBase):
             # Events don't match exactly because the mongo ones have reverse_host and inserted_at
             assert events_json != db_events_pydantic
             for db_event in db_events_pydantic:
-                db_event.pop("reverse_host")
-                db_event.pop("inserted_at")
-                db_event.pop("archived")
+                db_event.pop("reverse_host", None)
+                db_event.pop("inserted_at", None)
+                db_event.pop("archived", None)
             # They should match after removing reverse_host
             assert events_json == db_events_pydantic, "Events do not match"
 

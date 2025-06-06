@@ -1,3 +1,5 @@
+from omegaconf import OmegaConf
+
 from bbot.models.pydantic import Event
 from bbot.modules.output.base import BaseOutputModule
 
@@ -32,7 +34,7 @@ class HTTP(BaseOutputModule):
         self.url = self.config.get("url", "")
         self.method = self.config.get("method", "POST")
         self.timeout = self.config.get("timeout", 10)
-        self.headers = self.config.get("headers", {})
+        self.headers = OmegaConf.to_object(self.config.get("headers", OmegaConf.create()))
         bearer = self.config.get("bearer", "")
         if bearer:
             self.headers["Authorization"] = f"Bearer {bearer}"
