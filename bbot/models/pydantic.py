@@ -1,7 +1,7 @@
 import json
 import logging
 from pydantic import BaseModel, ConfigDict, Field, computed_field
-from typing import Optional, List, Annotated, get_origin, get_args
+from typing import Optional, List, Annotated, get_origin, get_args, Dict, Any
 
 from bbot.models.helpers import utc_now_timestamp
 
@@ -77,12 +77,12 @@ class Event(BBOTBaseModel):
     type: Annotated[str, "indexed"]
     scope_description: str
     data: Annotated[Optional[str], "indexed"] = None
-    data_json: Optional[dict] = None
+    data_json: Optional[Dict[str, Any]] = None
     host: Annotated[Optional[str], "indexed"] = None
     port: Optional[int] = None
     netloc: Optional[str] = None
     resolved_hosts: Optional[List] = None
-    dns_children: Optional[dict] = None
+    dns_children: Optional[Dict[str, Any]] = None
     web_spider_distance: int = 10
     scope_distance: int = 10
     scan: Annotated[str, "indexed"]
@@ -129,8 +129,8 @@ class Scan(BBOTBaseModel):
     finished_at: Annotated[Optional[float], "indexed"] = None
     duration_seconds: Optional[float] = None
     duration: Optional[str] = None
-    target: dict
-    preset: dict
+    target: Dict[str, Any]
+    preset: Dict[str, Any]
 
     @classmethod
     def from_scan(cls, scan):
