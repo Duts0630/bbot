@@ -2471,19 +2471,19 @@ files = [
 
 [[package]]
 name = "requests"
-version = "2.32.3"
+version = "2.32.4"
 description = "Python HTTP for Humans."
 optional = false
 python-versions = ">=3.8"
 groups = ["main", "docs"]
 files = [
-    {file = "requests-2.32.3-py3-none-any.whl", hash = "sha256:70761cfe03c773ceb22aa2f671b4757976145175cdfca038c02654d061d6dcc6"},
-    {file = "requests-2.32.3.tar.gz", hash = "sha256:55365417734eb18255590a9ff9eb97e9e1da868d4ccd6402399eaf68af20a760"},
+    {file = "requests-2.32.4-py3-none-any.whl", hash = "sha256:27babd3cda2a6d50b30443204ee89830707d396671944c998b5975b031ac2b2c"},
+    {file = "requests-2.32.4.tar.gz", hash = "sha256:27d0316682c8a29834d3264820024b62a36942083d52caf2f14c0591336d3422"},
 ]
 
 [package.dependencies]
 certifi = ">=2017.4.17"
-charset-normalizer = ">=2,<4"
+charset_normalizer = ">=2,<4"
 idna = ">=2.5,<4"
 urllib3 = ">=1.21.1,<3"
 
@@ -3131,6 +3131,10 @@ groups = ["main"]
 files = [
     {file = "yara_python-4.5.2-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:20aee068c8f14e8ebb40ebf03e7e2c14031736fbf6f32fca58ad89d211e4aaa0"},
     {file = "yara_python-4.5.2-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:9899c3a80e6c543585daf49c5b06ba5987e2f387994a5455d841262ea6e8577c"},
+    {file = "yara_python-4.5.2-cp310-cp310-macosx_14_0_arm64.whl", hash = "sha256:399bb09f81d38876a06e269f68bbe810349aa0bb47fe79866ea3fc58ce38d30f"},
+    {file = "yara_python-4.5.2-cp310-cp310-macosx_14_0_x86_64.whl", hash = "sha256:c78608c6bf3d2c379514b1c118a104874df1844bf818087e1bf6bfec0edfd1aa"},
+    {file = "yara_python-4.5.2-cp310-cp310-macosx_15_0_arm64.whl", hash = "sha256:f25db30f8ae88a4355e5090a5d6191ee6f2abfdd529b3babc68a1faeba7c2ac8"},
+    {file = "yara_python-4.5.2-cp310-cp310-macosx_15_0_x86_64.whl", hash = "sha256:f2866c0b8404086c5acb68cab20854d439009a1b02077aca22913b96138d2f6a"},
     {file = "yara_python-4.5.2-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:9fc5abddf8767ca923a5a88b38b8057d4fab039323d5c6b2b5be6cba5e6e7350"},
     {file = "yara_python-4.5.2-cp310-cp310-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:bc2216bc73d4918012a4b270a93f9042445c7246b4a668a1bea220fbf64c7990"},
     {file = "yara_python-4.5.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b5558325eb7366f610a06e8c7c4845062d6880ee88f1fbc35e92fae333c3333c"},
